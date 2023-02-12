@@ -1,0 +1,64 @@
+#div_pagina_excluir_pessoa{
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 10px 50px 10px;
+  width: calc(820px - 10px - 10px);
+  max-width: calc(100% - 10px - 10px);
+}
+@media only screen and (max-device-width: 640px){
+  #div_pagina_excluir_pessoa{
+    padding: 15px 10px 10px 10px;
+  }
+}
+#h2_titulo_da_pagina{
+  text-align: center;
+}
+
+/* Mensagem */
+#div_mensagem{
+  margin-top: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 500px;
+  max-width: 100%;
+  text-align: justify;
+}
+@media only screen and (max-device-width: 640px){
+  #div_mensagem{
+    margin-top: 20px;
+  }
+}
+.mensagem_de_sucesso{
+  color: #007000;
+}
+.mensagem_de_falha{
+  color: #900000;
+}
+
+/* Formulário de exclusão */
+#form_confirmar_exclusao_de_pessoa{
+  margin-top: 28px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 500px;
+  max-width: 100%;
+}
+@media only screen and (max-device-width: 640px){
+  #form_confirmar_exclusao_de_pessoa{
+    margin-top: 20px;
+  }
+}
+#div_texto_confirmar_exclusao_de_pessoa{
+  line-height: 26px;
+  font-size: 14pt;
+  text-align: justify;
+}
+#div_botao_excluir{
+  margin-top: 22px;
+  text-align: center;
+}
+@media only screen and (max-device-width: 640px){
+  #div_botao_excluir{
+    margin-top: 20px;
+  }
+}

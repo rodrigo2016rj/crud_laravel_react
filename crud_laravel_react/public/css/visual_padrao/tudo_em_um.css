@@ -1,0 +1,825 @@
+#div_pagina_tudo_em_um{
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 10px 50px 10px;
+  width: calc(1020px - 10px - 10px);
+  max-width: calc(100% - 10px - 10px);
+}
+@media only screen and (max-device-width: 640px){
+  #div_pagina_tudo_em_um{
+    padding: 15px 10px 10px 10px;
+  }
+}
+#h2_titulo_da_pagina{
+  text-align: center;
+}
+
+/* Opções da página */
+#div_opcoes_da_pagina{
+  margin-top: 10px;
+}
+#h3_titulo_das_opcoes_da_pagina{
+  font-size: 18pt;
+}
+#div_lista_de_opcoes_da_pagina{
+  margin-top: 10px;
+}
+
+/* Formulário de filtros */
+#div_filtros{
+  margin-top: 25px;
+  border-top: 1px solid #6D6D6D;
+  padding-top: 8px;
+  overflow: hidden;
+}
+#h3_titulo_dos_filtros{
+  margin-bottom: 10px;
+  font-size: 18pt;
+}
+#div_filtro_nome{
+  float: left;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+@media only screen and (max-device-width: 640px){
+  #div_filtro_nome{
+    float: none;
+    margin-bottom: 0px;
+    margin-right: 0px;
+  }
+}
+#div_filtro_cpf{
+  float: left;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+@media only screen and (max-device-width: 640px){
+  #div_filtro_cpf{
+    float: none;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    margin-right: 0px;
+  }
+}
+#div_filtro_data_de_nascimento{
+  float: left;
+  margin-bottom: 10px;
+}
+@media only screen and (max-device-width: 640px){
+  #div_filtro_data_de_nascimento{
+    float: none;
+    margin-top: 10px;
+    margin-bottom: 0px;
+  }
+}
+#span_icone_de_calendario_do_campo_filtro_data_de_nascimento{
+  display: inline-block;
+  position: absolute;
+  margin-top: 1px;
+  margin-left: calc(-25px - 2px);
+  width: 25px;
+  height: 25px;
+  vertical-align: top;
+  background-image: url("../../imagens/icones/Ícone de Calendário - Sem Fundo 25x25.png");
+  background-size: cover;
+  cursor: pointer;
+}
+#div_filtro_setor{
+  float: left;
+  clear: left;
+  margin-right: 20px;
+}
+@media only screen and (max-device-width: 640px){
+  #div_filtro_setor{
+    float: none;
+    margin-top: 10px;
+    margin-right: 0px;
+  }
+}
+#div_quantidade_por_pagina{
+  float: left;
+  margin-right: 20px;
+}
+@media only screen and (max-device-width: 640px){
+  #div_quantidade_por_pagina{
+    float: none;
+    margin-top: 10px;
+    margin-right: 0px;
+  }
+}
+#div_botoes_dos_filtros{
+  float: left;
+  padding-top: 19px;
+  word-spacing: -5px;
+}
+@media only screen and (max-device-width: 640px){
+  #div_botoes_dos_filtros{
+    float: none;
+    margin-top: 10px;
+    padding-top: 0px;
+  }
+}
+#botao_buscar{
+  display: inline-block;
+  vertical-align: top;
+}
+#botao_limpar{
+  display: inline-block;
+  margin-left: 15px;
+  vertical-align: top;
+}
+
+/* Lista de pessoas */
+#div_local_da_lista_de_pessoas{
+  margin-top: 25px;
+  border-top: 1px solid #6D6D6D;
+  padding-top: 8px;
+}
+#h3_titulo_da_lista_de_pessoas{
+  margin-bottom: 10px;
+  font-size: 0pt;
+}
+#span_titulo_da_lista_de_pessoas{
+  font-size: 18pt;
+}
+#span_status_da_busca{
+  margin-left: 15px;
+  font-size: 12pt;
+}
+#div_paginacao_de_cima_da_lista_de_pessoas{
+  text-align: center;
+}
+@media only screen and (max-device-width: 640px){
+  #div_paginacao_de_cima_da_lista_de_pessoas{
+    position: relative;
+    padding-bottom: 10px;
+    font-size: 10.5pt;
+    white-space: nowrap;
+    overflow: auto;
+    z-index: 1;
+  }
+}
+.primeira_pagina,
+.primeira_pagina:visited{
+  display: inline-block;
+  padding: 2px 3px;
+  vertical-align: top;
+  color: #282880;
+}
+.primeira_pagina:hover{
+  background-color: #484880;
+  color: #F8F8F8;
+  text-decoration: none;
+}
+.pagina_anterior,
+.pagina_anterior:visited{
+  display: inline-block;
+  padding: 2px 3px;
+  vertical-align: top;
+  color: #282880;
+}
+.pagina_anterior:hover{
+  background-color: #484880;
+  color: #F8F8F8;
+  text-decoration: none;
+}
+.pagina,
+.pagina:visited{
+  display: inline-block;
+  padding: 2px 3px;
+  vertical-align: top;
+  color: #282880;
+}
+.pagina:hover{
+  background-color: #484880;
+  color: #F8F8F8;
+  text-decoration: none;
+}
+.pagina_selecionada,
+.pagina_selecionada:visited{
+  display: inline-block;
+  padding: 2px 3px;
+  vertical-align: top;
+  color: #282880;
+  text-shadow: 1px 0px 0px #282880;
+}
+.pagina_selecionada:hover{
+  background-color: #484880;
+  color: #F8F8F8;
+  text-decoration: none;
+}
+.pagina_seguinte,
+.pagina_seguinte:visited{
+  display: inline-block;
+  padding: 2px 3px;
+  vertical-align: top;
+  color: #282880;
+}
+.pagina_seguinte:hover{
+  background-color: #484880;
+  color: #F8F8F8;
+  text-decoration: none;
+}
+.ultima_pagina,
+.ultima_pagina:visited{
+  display: inline-block;
+  padding: 2px 3px;
+  vertical-align: top;
+  color: #282880;
+}
+.ultima_pagina:hover{
+  background-color: #484880;
+  color: #F8F8F8;
+  text-decoration: none;
+}
+#div_partes_da_lista_de_pessoas{
+  border: 1px solid #E0E0F4;
+  padding: 0px 8px;
+  min-width: calc(100% - 2px - 16px);
+  max-width: calc(100% - 2px - 16px);
+  background-color: #F0F0FF;
+  overflow: hidden;
+}
+#div_parte_nome_da_lista_de_pessoas{
+  float: left;
+  padding: 8px 0px;
+  min-width: calc(40% - 60px);
+  max-width: calc(40% - 60px);
+  cursor: pointer;
+}
+@media only screen and (max-device-width: 640px){
+  #div_parte_nome_da_lista_de_pessoas{
+    float: none;
+    min-width: 100%;
+    max-width: 100%;
+  }
+}
+#div_parte_cpf_da_lista_de_pessoas{
+  float: left;
+  padding: 8px 0px;
+  min-width: 15%;
+  max-width: 15%;
+  cursor: pointer;
+}
+@media only screen and (max-device-width: 640px){
+  #div_parte_cpf_da_lista_de_pessoas{
+    display: none;
+  }
+}
+#div_parte_setor_da_lista_de_pessoas{
+  float: left;
+  padding: 8px 0px;
+  min-width: 15%;
+  max-width: 15%;
+  cursor: pointer;
+}
+@media only screen and (max-device-width: 640px){
+  #div_parte_setor_da_lista_de_pessoas{
+    display: none;
+  }
+}
+#div_parte_contato_da_lista_de_pessoas{
+  float: left;
+  padding: 8px 0px;
+  min-width: 30%;
+  max-width: 30%;
+  cursor: pointer;
+}
+@media only screen and (max-device-width: 640px){
+  #div_parte_contato_da_lista_de_pessoas{
+    display: none;
+  }
+}
+#div_parte_opcoes_da_lista_de_pessoas{
+  float: left;
+  padding: 8px 0px;
+  min-width: 60px;
+  max-width: 60px;
+  text-align: right;
+}
+@media only screen and (max-device-width: 640px){
+  #div_parte_opcoes_da_lista_de_pessoas{
+    display: none;
+  }
+}
+.pessoa{
+  display: flex;
+  border-right: 1px solid #E0E0F4;
+  border-bottom: 1px solid #E0E0F4;
+  border-left: 1px solid #E0E0F4;
+  padding: 8px;
+  min-width: calc(100% - 2px - 16px);
+  max-width: calc(100% - 2px - 16px);
+}
+@media only screen and (max-device-width: 640px){
+  .pessoa{
+    display: block;
+  }
+}
+.pessoa.impar{
+  background-color: #F8F8FF;
+}
+.pessoa.par{
+  background-color: #FFF;
+}
+.local_do_nome_da_pessoa{
+  margin-top: auto;
+  margin-right: 8px;
+  margin-bottom: auto;
+  min-width: calc(40% - 8px - 60px);
+  max-width: calc(40% - 8px - 60px);
+  overflow: auto;
+}
+@media only screen and (max-device-width: 640px){
+  .local_do_nome_da_pessoa{
+    margin-right: 0px;
+    min-width: initial;
+    max-width: initial;
+  }
+}
+.local_do_cpf_da_pessoa{
+  margin-top: auto;
+  margin-right: 8px;
+  margin-bottom: auto;
+  min-width: calc(15% - 8px);
+  max-width: calc(15% - 8px);
+  overflow: auto;
+}
+@media only screen and (max-device-width: 640px){
+  .local_do_cpf_da_pessoa{
+    margin-top: 20px;
+    margin-right: 0px;
+    min-width: initial;
+    max-width: initial;
+  }
+}
+.local_do_nome_do_setor{
+  margin-top: auto;
+  margin-right: 8px;
+  margin-bottom: auto;
+  min-width: calc(15% - 8px);
+  max-width: calc(15% - 8px);
+  overflow: auto;
+}
+@media only screen and (max-device-width: 640px){
+  .local_do_nome_do_setor{
+    margin-top: 20px;
+    margin-right: 0px;
+    min-width: initial;
+    max-width: initial;
+  }
+}
+.local_do_contato_da_pessoa{
+  margin-top: auto;
+  margin-right: 8px;
+  margin-bottom: auto;
+  min-width: calc(30% - 8px);
+  max-width: calc(30% - 8px);
+  overflow: auto;
+}
+@media only screen and (max-device-width: 640px){
+  .local_do_contato_da_pessoa{
+    margin-top: 20px;
+    min-width: initial;
+    max-width: initial;
+  }
+}
+.contato_da_pessoa{
+  margin-top: 8px;
+}
+.contato_da_pessoa:first-child{
+  margin-top: 0px;
+}
+.local_das_opcoes_do_item_da_lista{
+  margin-top: auto;
+  margin-bottom: auto;
+  min-width: 60px;
+  max-width: 60px;
+  text-align: right;
+}
+@media only screen and (max-device-width: 640px){
+  .local_das_opcoes_do_item_da_lista{
+    margin-top: 20px;
+    min-width: initial;
+    max-width: initial;
+    text-align: left;
+  }
+}
+.opcao_do_item_da_lista{
+  margin-top: 8px;
+}
+.opcao_do_item_da_lista:first-child{
+  margin-top: 0px;
+}
+#div_mensagem_quando_nao_ha_pessoas{
+  border-right: 1px solid #E0E0F4;
+  border-bottom: 1px solid #E0E0F4;
+  border-left: 1px solid #E0E0F4;
+  padding: 10px 8px;
+  text-align: center;
+}
+#div_paginacao_de_baixo_da_lista_de_pessoas{
+  text-align: center;
+}
+@media only screen and (max-device-width: 640px){
+  #div_paginacao_de_baixo_da_lista_de_pessoas{
+    position: relative;
+    padding-bottom: 10px;
+    font-size: 10.5pt;
+    white-space: nowrap;
+    overflow: auto;
+    z-index: 1;
+  }
+}
+
+/* Div fechar dos popups */
+.div_fechar{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 2px 6px;
+  background-color: #C04848;
+  color: #FFF;
+  font-size: 14pt;
+  cursor: pointer;
+}
+.div_fechar:hover{
+  background-color: #A01818;
+}
+
+/* Mensagens dos formulários */
+.div_mensagem{
+  margin-top: 25px;
+  text-align: justify;
+}
+.div_mensagem.tag_oculta{
+  margin-top: 0px;
+}
+.mensagem_de_sucesso{
+  color: #007000;
+}
+.mensagem_de_falha{
+  color: #900000;
+}
+
+/* Formulário Cadastrar Pessoa */
+#div_cadastrar_pessoa{
+  position: absolute;
+  top: 0px; /* Será modificado pelo script */
+  left: 0px; /* Será modificado pelo script */
+  border: 1px solid #A4A4A4;
+  padding: 20px 40px;
+  width: calc(482px - 2px - 80px);
+  max-width: calc(100% - 2px - 80px);
+  background-color: #F8F8F8;
+  box-shadow: 0px 0px 8px 0px rgba(23, 23, 31, 0.75);
+  z-index: 2;
+}
+#h3_titulo_cadastrar_pessoa{
+  font-size: 18pt;
+}
+#div_legenda_do_formulario_cadastrar_pessoa{
+  margin-top: 25px;
+}
+#div_cadastrar_nome{
+  margin-top: 25px;
+}
+#campo_nome{
+  width: calc(262px - 2px - 10px);
+}
+#div_cadastrar_sobrenome{
+  margin-top: 22px;
+}
+#campo_sobrenome{
+  width: calc(412px - 2px - 10px);
+}
+#div_cadastrar_cpf{
+  margin-top: 22px;
+}
+#campo_cpf{
+  width: calc(162px - 2px - 10px);
+}
+#div_cadastrar_data_de_nascimento{
+  margin-top: 22px;
+}
+#campo_data_de_nascimento{
+  width: calc(182px - 2px - 10px);
+}
+#span_icone_de_calendario_do_campo_data_de_nascimento{
+  display: inline-block;
+  position: absolute;
+  margin-top: 1px;
+  margin-left: calc(-25px - 2px);
+  width: 25px;
+  height: 25px;
+  vertical-align: top;
+  background-image: url("../../imagens/icones/Ícone de Calendário - Sem Fundo 25x25.png");
+  background-size: cover;
+  cursor: pointer;
+}
+#div_cadastrar_sexo{
+  margin-top: 22px;
+}
+#div_lista_de_sexos{
+  border: 1px solid #C8C8C8;
+  padding: 4px 5px;
+  width: calc(218px - 2px - 10px);
+  background-color: #FFF;
+}
+#div_lista_de_sexos>.item_da_lista_de_sexos{
+  margin-left: 30px;
+  word-spacing: -2px;
+  font-size: 11pt;
+  cursor: pointer;
+}
+#div_lista_de_sexos>.item_da_lista_de_sexos:first-child{
+  margin-left: 0px;
+}
+#div_cadastrar_setor{
+  margin-top: 22px;
+}
+#caixa_de_selecao_setor{
+  width: 262px;
+}
+#div_cadastrar_email{
+  margin-top: 22px;
+}
+#campo_email{
+  width: calc(362px - 2px - 10px);
+}
+#div_cadastrar_telefone_fixo{
+  margin-top: 22px;
+}
+#campo_telefone_fixo{
+  width: calc(238px - 2px - 10px);
+}
+#div_cadastrar_telefone_movel{
+  margin-top: 22px;
+}
+#campo_telefone_movel{
+  width: calc(238px - 2px - 10px);
+}
+#div_cadastrar_telefone_estrangeiro{
+  margin-top: 22px;
+}
+#campo_telefone_estrangeiro{
+  width: calc(312px - 2px - 10px);
+}
+#div_botao_cadastrar{
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Visualizar Pessoa */
+#div_visualizar_pessoa,
+.div_visualizar_pessoa{
+  position: absolute;
+  top: 0px; /* Será modificado pelo script */
+  left: 0px; /* Será modificado pelo script */
+  border: 1px solid #A4A4A4;
+  padding: 20px 40px 40px 40px;
+  width: calc(882px - 2px - 40px - 40px);
+  max-width: calc(100% - 2px - 40px - 40px);
+  background-color: #F8F8F8;
+  box-shadow: 0px 0px 8px 0px rgba(23, 23, 31, 0.75);
+  z-index: 2;
+}
+.h3_titulo_visualizar_pessoa{
+  font-size: 18pt;
+}
+.informacao_da_pessoa{
+  margin-top: 25px;
+  font-size: 14pt;
+}
+.parte_especifica_da_informacao{
+  color: #202080;
+}
+.sem_informacao{
+  color: #802020;
+  white-space: nowrap;
+}
+.div_visualizar_nome_completo>.local_da_parte_especifica_da_informacao{
+  word-wrap: break-word;
+}
+.div_visualizar_sexo .parte_especifica_da_informacao.azul_claro{
+  color: #0040B8;
+}
+.div_visualizar_sexo .parte_especifica_da_informacao.rosa{
+  color: #B800B8;
+}
+.div_visualizar_email>.local_da_parte_especifica_da_informacao{
+  word-wrap: break-word;
+}
+
+/* Formulário Editar Pessoa */
+#div_editar_pessoa,
+.div_editar_pessoa{
+  position: absolute;
+  top: 0px; /* Será modificado pelo script */
+  left: 0px; /* Será modificado pelo script */
+  border: 1px solid #A4A4A4;
+  padding: 20px 40px;
+  width: calc(482px - 2px - 80px);
+  max-width: calc(100% - 2px - 80px);
+  background-color: #F8F8F8;
+  box-shadow: 0px 0px 8px 0px rgba(23, 23, 31, 0.75);
+  z-index: 2;
+}
+.h3_titulo_editar_pessoa{
+  font-size: 18pt;
+}
+.div_legenda_do_formulario_editar_pessoa{
+  margin-top: 25px;
+}
+.marcador_de_obrigatoriedade{
+  color: #900000;
+}
+.div_editar_nome{
+  margin-top: 25px;
+}
+input.campo_nome{
+  width: calc(262px - 2px - 10px);
+}
+.div_editar_sobrenome{
+  margin-top: 22px;
+}
+input.campo_sobrenome{
+  width: calc(412px - 2px - 10px);
+}
+.div_editar_cpf{
+  margin-top: 22px;
+}
+input.campo_cpf{
+  width: calc(162px - 2px - 10px);
+}
+.div_editar_data_de_nascimento{
+  margin-top: 22px;
+}
+input.campo_data_de_nascimento{
+  width: calc(182px - 2px - 10px);
+}
+.span_icone_de_calendario_do_campo_data_de_nascimento{
+  display: inline-block;
+  position: absolute;
+  margin-top: 1px;
+  margin-left: calc(-25px - 2px);
+  width: 25px;
+  height: 25px;
+  vertical-align: top;
+  background-image: url("../../imagens/icones/Ícone de Calendário - Sem Fundo 25x25.png");
+  background-size: cover;
+  cursor: pointer;
+}
+.div_editar_sexo{
+  margin-top: 22px;
+}
+.div_lista_de_sexos{
+  border: 1px solid #C8C8C8;
+  padding: 4px 5px;
+  width: calc(218px - 2px - 10px);
+  background-color: #FFF;
+}
+.div_lista_de_sexos>.item_da_lista_de_sexos{
+  margin-left: 30px;
+  word-spacing: -2px;
+  font-size: 11pt;
+  cursor: pointer;
+}
+.div_lista_de_sexos>.item_da_lista_de_sexos:first-child{
+  margin-left: 0px;
+}
+.div_editar_setor{
+  margin-top: 22px;
+}
+select.caixa_de_selecao_setor{
+  width: 262px;
+}
+.div_editar_email{
+  margin-top: 22px;
+}
+input.campo_email{
+  width: calc(362px - 2px - 10px);
+}
+.div_editar_telefone_fixo{
+  margin-top: 22px;
+}
+input.campo_telefone_fixo{
+  width: calc(238px - 2px - 10px);
+}
+.div_editar_telefone_movel{
+  margin-top: 22px;
+}
+input.campo_telefone_movel{
+  width: calc(238px - 2px - 10px);
+}
+.div_editar_telefone_estrangeiro{
+  margin-top: 22px;
+}
+input.campo_telefone_estrangeiro{
+  width: calc(312px - 2px - 10px);
+}
+.div_botao_editar{
+  margin-top: 30px;
+  text-align: center;
+}
+
+/* Formulário Excluir Pessoa */
+#div_excluir_pessoa,
+.div_excluir_pessoa{
+  position: absolute;
+  top: 0px; /* Será modificado pelo script */
+  left: 0px; /* Será modificado pelo script */
+  border: 1px solid #A4A4A4;
+  padding: 20px 40px;
+  width: calc(482px - 2px - 80px);
+  max-width: calc(100% - 2px - 80px);
+  background-color: #F8F8F8;
+  box-shadow: 0px 0px 8px 0px rgba(23, 23, 31, 0.75);
+  z-index: 2;
+}
+.h3_titulo_excluir_pessoa{
+  font-size: 18pt;
+}
+.div_texto_confirmar_exclusao_de_pessoa{
+  margin-top: 25px;
+  line-height: 26px;
+  font-size: 14pt;
+  text-align: justify;
+}
+@media only screen and (max-device-width: 640px){
+  .div_texto_confirmar_exclusao_de_pessoa{
+    font-size: 12pt;
+  }
+}
+.div_botao_excluir{
+  margin-top: 22px;
+  text-align: center;
+}
+
+/* Calendário */
+.div_calendario{
+  position: absolute;
+  border: 1px solid #9090C8;
+  padding: 12px 8px;
+  background-color: #F0F0FF;
+  z-index: 2;
+}
+.span_titulo_do_calendario{
+  font-size: 14pt;
+}
+.caixa_de_selecao_de_mes_do_calendario{
+  margin-left: 9px;
+  width: 120px;
+}
+.caixa_de_selecao_de_ano_do_calendario{
+  margin-left: 9px;
+  width: 80px;
+}
+.div_corpo_do_calendario{
+  margin-top: 12px;
+}
+.div_dias_do_calendario{
+  border-top: 1px dashed #7070C0;
+  border-left: 1px dashed #7070C0;
+  min-width: 329px;
+  max-width: 329px;
+  overflow: hidden;
+}
+.celula_do_calendario{
+  float: left;
+  border-right: 1px dashed #7070C0;
+  border-bottom: 1px dashed #7070C0;
+  padding: 2px 2px 1px 3px;
+  min-width: calc(47px - 2px - 3px - 1px);
+  max-width: calc(47px - 2px - 3px - 1px);
+  min-height: 23px;
+  max-height: 23px;
+  text-align: center;
+}
+.dia_do_calendario>span{
+  position: relative;
+  top: 2px;
+}
+.dia_do_calendario:hover{
+  border: 1px solid #404070;
+  padding-left: 2px;
+  padding-top: 1px;
+  background-color: #FAFAFF;
+  cursor: pointer;
+}
+.dia_escolhido,
+.dia_escolhido:hover{
+  border-right: 1px solid #404070;
+  border-bottom: 1px solid #404070;
+  background-color: #404070;
+  color: #FFF;
+}
+.div_rodape_do_calendario{
+  margin-top: 12px;
+}
+.div_botoes_do_calendario{
+  text-align: center;
+}
+button.botao_confirmar_do_calendario{
+  background-color: #FFF;
+}

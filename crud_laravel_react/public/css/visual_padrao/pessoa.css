@@ -1,0 +1,102 @@
+#div_pagina_pessoa{
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 10px 50px 10px;
+  width: calc(820px - 10px - 10px);
+  max-width: calc(100% - 10px - 10px);
+}
+@media only screen and (max-device-width: 640px){
+  #div_pagina_pessoa{
+    padding: 15px 10px 10px 10px;
+  }
+}
+#h2_titulo_da_pagina{
+  text-align: center;
+  overflow: auto;
+}
+
+/* Mensagem */
+#div_mensagem{
+  margin-top: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 500px;
+  max-width: 100%;
+  text-align: justify;
+}
+@media only screen and (max-device-width: 640px){
+  #div_mensagem{
+    margin-top: 20px;
+  }
+}
+.mensagem_de_sucesso{
+  color: #007000;
+}
+.mensagem_de_falha{
+  color: #900000;
+}
+
+/* Opções da página */
+#div_opcoes_da_pagina{
+  margin-top: 10px;
+}
+#h3_titulo_das_opcoes_da_pagina{
+  font-size: 18pt;
+}
+#div_lista_de_opcoes_da_pagina{
+  margin-top: 10px;
+}
+#link_excluir_pessoa{
+  margin-left: 25px;
+}
+
+/* Informações da pessoa */
+#div_local_das_informacoes_da_pessoa{
+  margin-top: 25px;
+  border-top: 1px solid #6D6D6D;
+  padding-top: 8px;
+}
+#h3_titulo_das_informacoes_da_pessoa{
+  font-size: 18pt;
+}
+#div_informacoes_da_pessoa{
+  margin-top: 20px;
+  font-size: 14pt;
+}
+.informacao_da_pessoa{
+  margin-top: 10px;
+}
+.informacao_da_pessoa:first-child{
+  margin-top: 0px;
+}
+.local_da_parte_especifica_da_informacao{
+  display: inline;
+}
+.parte_especifica_da_informacao{
+  color: #202080;
+}
+.sem_informacao{
+  color: #802020;
+  white-space: nowrap;
+}
+#div_nome_completo{
+  word-wrap: break-word;
+}
+#div_local_da_data_de_nascimento{
+  margin-top: 30px;
+}
+#span_sexo.azul_claro{
+  color: #0040B8;
+}
+#span_sexo.rosa{
+  color: #B800B8;
+}
+#div_local_do_setor{
+  margin-top: 30px;
+}
+#div_local_do_email{
+  margin-top: 30px;
+}
+#div_email{
+  word-wrap: break-word;
+}

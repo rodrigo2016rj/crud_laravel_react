@@ -1,0 +1,236 @@
+#div_pagina_cadastrar_pessoa{
+  margin-right: auto;
+  margin-left: auto;
+  padding: 20px 10px 50px 10px;
+  width: calc(820px - 10px - 10px);
+  max-width: calc(100% - 10px - 10px);
+}
+@media only screen and (max-device-width: 640px){
+  #div_pagina_cadastrar_pessoa{
+    padding: 15px 10px 10px 10px;
+  }
+}
+#h2_titulo_da_pagina{
+  text-align: center;
+}
+
+/* Mensagem */
+#div_mensagem{
+  margin-top: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 500px;
+  max-width: 100%;
+  text-align: justify;
+}
+@media only screen and (max-device-width: 640px){
+  #div_mensagem{
+    margin-top: 20px;
+  }
+}
+.mensagem_de_sucesso{
+  color: #007000;
+}
+.mensagem_de_falha{
+  color: #900000;
+}
+
+/* Formulário de cadastro */
+#form_cadastrar{
+  margin-top: 32px;
+  margin-right: auto;
+  margin-left: auto;
+  width: 400px;
+  max-width: 100%;
+}
+@media only screen and (max-device-width: 640px){
+  #form_cadastrar{
+    margin-top: 20px;
+  }
+}
+.marcador_de_obrigatoriedade{
+  color: #900000;
+}
+#div_cadastrar_nome{
+  margin-top: 25px;
+}
+#campo_nome{
+  width: calc(262px - 2px - 10px);
+}
+#div_cadastrar_sobrenome{
+  margin-top: 22px;
+}
+#campo_sobrenome{
+  width: calc(412px - 2px - 10px);
+}
+#div_cadastrar_cpf{
+  margin-top: 22px;
+}
+#campo_cpf{
+  width: calc(162px - 2px - 10px);
+}
+#div_cadastrar_data_de_nascimento{
+  margin-top: 22px;
+}
+#campo_data_de_nascimento{
+  width: calc(182px - 2px - 10px);
+}
+#span_icone_de_calendario_do_campo_data_de_nascimento{
+  display: inline-block;
+  position: absolute;
+  margin-top: 1px;
+  margin-left: calc(-25px - 2px);
+  width: 25px;
+  height: 25px;
+  vertical-align: top;
+  background-image: url("../../imagens/icones/Ícone de Calendário - Sem Fundo 25x25.png");
+  background-size: cover;
+  cursor: pointer;
+}
+#div_cadastrar_sexo{
+  margin-top: 22px;
+}
+#div_lista_de_sexos{
+  border: 1px solid #C8C8C8;
+  padding: 4px 5px;
+  width: calc(218px - 2px - 10px);
+  background-color: #FFF;
+}
+.item_da_lista_de_sexos{
+  margin-left: 30px;
+  word-spacing: -2px;
+  font-size: 11pt;
+  cursor: pointer;
+}
+.item_da_lista_de_sexos:first-child{
+  margin-left: 0px;
+}
+#div_cadastrar_setor{
+  margin-top: 22px;
+}
+#caixa_de_selecao_setor{
+  width: 262px;
+}
+#div_descricoes_da_caixa_de_selecao_dos_setores{
+  position: relative;
+  border: 1px solid #989898;
+  border-radius: 10px;
+  padding: 4px;
+  min-width: calc(320px - 2px - 8px);
+  max-width: calc(320px - 2px - 8px);
+  min-height: calc(86px - 2px - 8px);
+  max-height: calc(86px - 2px - 8px);
+  background-color: #FFF;
+  color: #444444;
+}
+#div_descricoes_da_caixa_de_selecao_dos_setores:before{
+  position: absolute;
+  top: 38px;
+  right: 100%;
+  border-top: 5px solid transparent;
+  border-right: 10px solid #989898;
+  border-bottom: 5px solid transparent;
+  content: "";
+}
+.descricao_do_setor{
+  min-height: 76px;
+  max-height: 76px;
+  word-wrap: break-word;
+  overflow: auto;
+}
+#div_cadastrar_email{
+  margin-top: 22px;
+}
+#campo_email{
+  width: calc(362px - 2px - 10px);
+}
+#div_cadastrar_telefone_fixo{
+  margin-top: 22px;
+}
+#campo_telefone_fixo{
+  width: calc(238px - 2px - 10px);
+}
+#div_cadastrar_telefone_movel{
+  margin-top: 22px;
+}
+#campo_telefone_movel{
+  width: calc(238px - 2px - 10px);
+}
+#div_cadastrar_telefone_estrangeiro{
+  margin-top: 22px;
+}
+#campo_telefone_estrangeiro{
+  width: calc(312px - 2px - 10px);
+}
+#div_botao_cadastrar{
+  margin-top: 25px;
+  margin-left: calc(312px / 2 - 80px / 2); /* Metade do campo menos metade do botão. */
+}
+
+/* Calendário */
+.div_calendario{
+  position: absolute;
+  border: 1px solid #9090C8;
+  padding: 12px 8px;
+  background-color: #F0F0FF;
+  z-index: 1;
+}
+.span_titulo_do_calendario{
+  font-size: 14pt;
+}
+.caixa_de_selecao_de_mes_do_calendario{
+  margin-left: 9px;
+  width: 120px;
+}
+.caixa_de_selecao_de_ano_do_calendario{
+  margin-left: 9px;
+  width: 80px;
+}
+.div_corpo_do_calendario{
+  margin-top: 12px;
+}
+.div_dias_do_calendario{
+  border-top: 1px dashed #7070C0;
+  border-left: 1px dashed #7070C0;
+  min-width: 329px;
+  max-width: 329px;
+  overflow: hidden;
+}
+.celula_do_calendario{
+  float: left;
+  border-right: 1px dashed #7070C0;
+  border-bottom: 1px dashed #7070C0;
+  padding: 2px 2px 1px 3px;
+  min-width: calc(47px - 2px - 3px - 1px);
+  max-width: calc(47px - 2px - 3px - 1px);
+  min-height: 23px;
+  max-height: 23px;
+  text-align: center;
+}
+.dia_do_calendario>span{
+  position: relative;
+  top: 2px;
+}
+.dia_do_calendario:hover{
+  border: 1px solid #404070;
+  padding-left: 2px;
+  padding-top: 1px;
+  background-color: #FAFAFF;
+  cursor: pointer;
+}
+.dia_escolhido,
+.dia_escolhido:hover{
+  border-right: 1px solid #404070;
+  border-bottom: 1px solid #404070;
+  background-color: #404070;
+  color: #FFF;
+}
+.div_rodape_do_calendario{
+  margin-top: 12px;
+}
+.div_botoes_do_calendario{
+  text-align: center;
+}
+button.botao_confirmar_do_calendario{
+  background-color: #FFF;
+}
