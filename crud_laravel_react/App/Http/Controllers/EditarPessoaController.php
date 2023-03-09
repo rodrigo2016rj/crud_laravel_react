@@ -392,7 +392,7 @@ final class EditarPessoaController extends TemplateController{
     $quantidade_de_arrobas = substr_count($email, '@');
     if($quantidade_de_arrobas > 1){
       $mensagem = 'A pessoa não foi editada.';
-      $mensagem .= ' O campo e-mail da pessoa precisa ter somente um caracter @.';
+      $mensagem .= ' O campo e-mail da pessoa precisa ter somente um caractere @.';
       $sessao->put('mensagem_da_pagina_editar_pessoa', $mensagem);
       $sessao->save();
       $this->carregar_pagina($id_da_pessoa);
@@ -400,7 +400,7 @@ final class EditarPessoaController extends TemplateController{
     }
     if($quantidade_de_arrobas < 1){
       $mensagem = 'A pessoa não foi editada.';
-      $mensagem .= ' O campo e-mail da pessoa precisa ter pelo menos um caracter @.';
+      $mensagem .= ' O campo e-mail da pessoa precisa ter pelo menos um caractere @.';
       $sessao->put('mensagem_da_pagina_editar_pessoa', $mensagem);
       $sessao->save();
       $this->carregar_pagina($id_da_pessoa);
