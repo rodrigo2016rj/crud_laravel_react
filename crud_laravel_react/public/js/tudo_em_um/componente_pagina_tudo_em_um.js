@@ -217,7 +217,7 @@ class ComponentePaginaTudoEmUm extends React.Component{
         dados_post[nome_do_campo_sem_o_prefixo] = valor_do_campo;
       }
     });
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
@@ -225,11 +225,11 @@ class ComponentePaginaTudoEmUm extends React.Component{
           
           this.state.campos_do_formulario.delete("_token");
           
-          if(typeof resposta["mensagem_de_falha"] != "undefined"){
+          if(typeof resposta.mensagem_de_falha != "undefined"){
             this.tipo_de_mensagem = "mensagem_de_falha";
-            this.mensagem = resposta["mensagem_de_falha"];
+            this.mensagem = resposta.mensagem_de_falha;
           }
-          if(typeof resposta["mensagem_de_sucesso"] != "undefined"){
+          if(typeof resposta.mensagem_de_sucesso != "undefined"){
             this.state.campos_do_formulario.set("filtro_nome", "");
             this.state.campos_do_formulario.set("filtro_cpf", "");
             this.state.campos_do_formulario.set("filtro_data_de_nascimento", "");
@@ -250,14 +250,14 @@ class ComponentePaginaTudoEmUm extends React.Component{
             this.state.campos_do_formulario.delete("cadastrar_telefone_estrangeiro");
             
             this.tipo_de_mensagem = "mensagem_de_sucesso";
-            this.mensagem = resposta["mensagem_de_sucesso"];
+            this.mensagem = resposta.mensagem_de_sucesso;
             
-            if(resposta["paginacao"].indexOf("pagina=0") === -1){
-              this.html_da_paginacao_da_lista_de_pessoas = resposta["paginacao"];
+            if(resposta.paginacao.indexOf("pagina=0") === -1){
+              this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
             }else{
               this.html_da_paginacao_da_lista_de_pessoas = null;
             }
-            this.html_da_lista_de_pessoas = resposta["lista"];
+            this.html_da_lista_de_pessoas = resposta.lista;
           }
           
           this.status_da_busca = "";
@@ -309,7 +309,7 @@ class ComponentePaginaTudoEmUm extends React.Component{
     url_mais = url_mais.replace('&', '?');
     let url = "tudo_em_um/mostrar_pessoas_ajax" + url_mais;
     let dados_post = null;
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
@@ -317,12 +317,12 @@ class ComponentePaginaTudoEmUm extends React.Component{
           
           this.status_da_busca = "";
           
-          if(resposta["paginacao"].indexOf("pagina=0") === -1){
-            this.html_da_paginacao_da_lista_de_pessoas = resposta["paginacao"];
+          if(resposta.paginacao.indexOf("pagina=0") === -1){
+            this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
           }else{
             this.html_da_paginacao_da_lista_de_pessoas = null;
           }
-          this.html_da_lista_de_pessoas = resposta["lista"];
+          this.html_da_lista_de_pessoas = resposta.lista;
           
           /* Chamando o método setState para renderizar o componente novamente. */
           this.setState(
@@ -367,7 +367,7 @@ class ComponentePaginaTudoEmUm extends React.Component{
     this.state.campos_do_formulario.forEach(function(valor_do_campo, nome_do_campo){
       dados_post[nome_do_campo] = valor_do_campo;
     });
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
@@ -386,20 +386,20 @@ class ComponentePaginaTudoEmUm extends React.Component{
           this.state.campos_do_formulario.delete("_token");
           this.state.campos_do_formulario.delete("id_da_pessoa");
           
-          if(typeof resposta["mensagem_de_falha"] != "undefined"){
+          if(typeof resposta.mensagem_de_falha != "undefined"){
             this.tipo_de_mensagem = "mensagem_de_falha";
-            this.mensagem = resposta["mensagem_de_falha"];
+            this.mensagem = resposta.mensagem_de_falha;
           }
-          if(typeof resposta["mensagem_de_sucesso"] != "undefined"){
+          if(typeof resposta.mensagem_de_sucesso != "undefined"){
             this.tipo_de_mensagem = "mensagem_de_sucesso";
-            this.mensagem = resposta["mensagem_de_sucesso"];
+            this.mensagem = resposta.mensagem_de_sucesso;
             
-            if(resposta["paginacao"].indexOf("pagina=0") === -1){
-              this.html_da_paginacao_da_lista_de_pessoas = resposta["paginacao"];
+            if(resposta.paginacao.indexOf("pagina=0") === -1){
+              this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
             }else{
               this.html_da_paginacao_da_lista_de_pessoas = null;
             }
-            this.html_da_lista_de_pessoas = resposta["lista"];
+            this.html_da_lista_de_pessoas = resposta.lista;
           }
           
           this.status_da_busca = "";
@@ -447,7 +447,7 @@ class ComponentePaginaTudoEmUm extends React.Component{
     this.state.campos_do_formulario.forEach(function(valor_do_campo, nome_do_campo){
       dados_post[nome_do_campo] = valor_do_campo;
     });
-    let resposta = Array();
+    let resposta = null;
     conexao_ajax.onreadystatechange = function(){
       if(conexao_ajax.readyState == 4){
         if(conexao_ajax.status == 200){
@@ -456,20 +456,20 @@ class ComponentePaginaTudoEmUm extends React.Component{
           this.state.campos_do_formulario.delete("_token");
           this.state.campos_do_formulario.delete("id_da_pessoa");
           
-          if(typeof resposta["mensagem_de_falha"] != "undefined"){
+          if(typeof resposta.mensagem_de_falha != "undefined"){
             this.tipo_de_mensagem = "mensagem_de_falha";
-            this.mensagem = resposta["mensagem_de_falha"];
+            this.mensagem = resposta.mensagem_de_falha;
           }
-          if(typeof resposta["mensagem_de_sucesso"] != "undefined"){
+          if(typeof resposta.mensagem_de_sucesso != "undefined"){
             this.tipo_de_mensagem = "mensagem_de_sucesso";
-            this.mensagem = resposta["mensagem_de_sucesso"];
+            this.mensagem = resposta.mensagem_de_sucesso;
             
-            if(resposta["paginacao"].indexOf("pagina=0") === -1){
-              this.html_da_paginacao_da_lista_de_pessoas = resposta["paginacao"];
+            if(resposta.paginacao.indexOf("pagina=0") === -1){
+              this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
             }else{
               this.html_da_paginacao_da_lista_de_pessoas = null;
             }
-            this.html_da_lista_de_pessoas = resposta["lista"];
+            this.html_da_lista_de_pessoas = resposta.lista;
           }
           
           this.status_da_busca = "";
