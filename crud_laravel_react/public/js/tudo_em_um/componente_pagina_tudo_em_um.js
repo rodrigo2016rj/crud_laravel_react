@@ -316,6 +316,8 @@ class ComponentePaginaTudoEmUm extends React.Component{
           resposta = JSON.parse(conexao_ajax.responseText);
           
           this.status_da_busca = "";
+          this.mensagem = "";
+          this.tipo_de_mensagem = "";
           
           if(resposta.paginacao.indexOf("pagina=0") === -1){
             this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
