@@ -6,6 +6,8 @@ class ComponentePaginaTudoEmUm extends React.Component{
   html_da_paginacao_da_lista_de_pessoas;
   mensagem;
   tipo_de_mensagem;
+  momento_da_acao_ajax;
+  contador_ajax;
   
   constructor(props){
     super(props);
@@ -16,6 +18,8 @@ class ComponentePaginaTudoEmUm extends React.Component{
     this.html_da_paginacao_da_lista_de_pessoas = "";
     this.mensagem = "";
     this.tipo_de_mensagem = "";
+    this.momento_da_acao_ajax = 0;
+    this.contador_ajax = 0;
     
     this.state = {
       elemento_modelo: props.elemento.cloneNode(true),
@@ -76,7 +80,7 @@ class ComponentePaginaTudoEmUm extends React.Component{
     if(typeof array_atributos["id"] !== "undefined"){
       switch(array_atributos["id"]){
         case "div_lista_de_opcoes_da_pagina":
-          elemento = React.createElement(ComponenteListaDeOpcoesDaPagina, {key: "ComponenteListaDeOpcoesDaPagina", elemento: elemento, cadastrar_pessoa: this.cadastrar_pessoa, campos_do_formulario: this.state.campos_do_formulario, mensagem: this.mensagem, tipo_de_mensagem: this.tipo_de_mensagem}, null);
+          elemento = React.createElement(ComponenteListaDeOpcoesDaPagina, {key: "ComponenteListaDeOpcoesDaPagina", elemento: elemento, cadastrar_pessoa: this.cadastrar_pessoa, campos_do_formulario: this.state.campos_do_formulario, mensagem: this.mensagem, tipo_de_mensagem: this.tipo_de_mensagem, momento_da_acao_ajax: this.momento_da_acao_ajax}, null);
           return elemento;
         break;
         case "div_filtro_nome":
@@ -129,7 +133,7 @@ class ComponentePaginaTudoEmUm extends React.Component{
           return elemento;
         break;
         case "div_lista_de_pessoas":
-          elemento = React.createElement(ComponenteListaDePessoas, {key: "ComponenteListaDePessoas", elemento: elemento, html: this.html_da_lista_de_pessoas, editar_pessoa: this.editar_pessoa, excluir_pessoa: this.excluir_pessoa, campos_do_formulario: this.state.campos_do_formulario, mensagem: this.mensagem, tipo_de_mensagem: this.tipo_de_mensagem}, null);
+          elemento = React.createElement(ComponenteListaDePessoas, {key: "ComponenteListaDePessoas", elemento: elemento, html: this.html_da_lista_de_pessoas, editar_pessoa: this.editar_pessoa, excluir_pessoa: this.excluir_pessoa, campos_do_formulario: this.state.campos_do_formulario, mensagem: this.mensagem, tipo_de_mensagem: this.tipo_de_mensagem, momento_da_acao_ajax: this.momento_da_acao_ajax}, null);
           return elemento;
         break;
         case "div_paginacao_de_baixo_da_lista_de_pessoas":
@@ -191,6 +195,10 @@ class ComponentePaginaTudoEmUm extends React.Component{
     
     this.mensagem = "Cadastrando...";
     this.tipo_de_mensagem = "";
+    this.momento_da_acao_ajax = new Date().getTime();
+    
+    this.contador_ajax++;
+    let numero_desta_acao_ajax = this.contador_ajax;
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
@@ -223,52 +231,54 @@ class ComponentePaginaTudoEmUm extends React.Component{
         if(conexao_ajax.status == 200){
           resposta = JSON.parse(conexao_ajax.responseText);
           
-          this.state.campos_do_formulario.delete("_token");
-          
-          if(typeof resposta.mensagem_de_falha != "undefined"){
-            this.tipo_de_mensagem = "mensagem_de_falha";
-            this.mensagem = resposta.mensagem_de_falha;
-          }
-          if(typeof resposta.mensagem_de_sucesso != "undefined"){
-            this.state.campos_do_formulario.set("filtro_nome", "");
-            this.state.campos_do_formulario.set("filtro_cpf", "");
-            this.state.campos_do_formulario.set("filtro_data_de_nascimento", "");
-            this.state.campos_do_formulario.set("filtro_id_do_setor", "");
-            this.state.campos_do_formulario.set("quantidade_por_pagina", "");
-            this.state.campos_do_formulario.set("ordenacao", "");
-            this.state.campos_do_formulario.delete("pagina");
+          if(numero_desta_acao_ajax >= this.contador_ajax){
+            this.state.campos_do_formulario.delete("_token");
             
-            this.state.campos_do_formulario.delete("cadastrar_nome");
-            this.state.campos_do_formulario.delete("cadastrar_sobrenome");
-            this.state.campos_do_formulario.delete("cadastrar_cpf");
-            this.state.campos_do_formulario.delete("cadastrar_data_de_nascimento");
-            this.state.campos_do_formulario.delete("cadastrar_sexo");
-            this.state.campos_do_formulario.delete("cadastrar_id_do_setor");
-            this.state.campos_do_formulario.delete("cadastrar_email");
-            this.state.campos_do_formulario.delete("cadastrar_telefone_fixo");
-            this.state.campos_do_formulario.delete("cadastrar_telefone_movel");
-            this.state.campos_do_formulario.delete("cadastrar_telefone_estrangeiro");
-            
-            this.tipo_de_mensagem = "mensagem_de_sucesso";
-            this.mensagem = resposta.mensagem_de_sucesso;
-            
-            if(resposta.paginacao.indexOf("pagina=0") === -1){
-              this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
-            }else{
-              this.html_da_paginacao_da_lista_de_pessoas = null;
+            if(typeof resposta.mensagem_de_falha != "undefined"){
+              this.tipo_de_mensagem = "mensagem_de_falha";
+              this.mensagem = resposta.mensagem_de_falha;
             }
-            this.html_da_lista_de_pessoas = resposta.lista;
-          }
-          
-          this.status_da_busca = "";
-          
-          /* Chamando o método setState para renderizar o componente novamente. */
-          this.setState(
-            {
-              elemento_modelo: this.state.elemento_modelo,
-              campos_do_formulario: this.state.campos_do_formulario
+            if(typeof resposta.mensagem_de_sucesso != "undefined"){
+              this.state.campos_do_formulario.delete("cadastrar_nome");
+              this.state.campos_do_formulario.delete("cadastrar_sobrenome");
+              this.state.campos_do_formulario.delete("cadastrar_cpf");
+              this.state.campos_do_formulario.delete("cadastrar_data_de_nascimento");
+              this.state.campos_do_formulario.delete("cadastrar_sexo");
+              this.state.campos_do_formulario.delete("cadastrar_id_do_setor");
+              this.state.campos_do_formulario.delete("cadastrar_email");
+              this.state.campos_do_formulario.delete("cadastrar_telefone_fixo");
+              this.state.campos_do_formulario.delete("cadastrar_telefone_movel");
+              this.state.campos_do_formulario.delete("cadastrar_telefone_estrangeiro");
+              
+              this.state.campos_do_formulario.set("filtro_nome", "");
+              this.state.campos_do_formulario.set("filtro_cpf", "");
+              this.state.campos_do_formulario.set("filtro_data_de_nascimento", "");
+              this.state.campos_do_formulario.set("filtro_id_do_setor", "");
+              this.state.campos_do_formulario.set("quantidade_por_pagina", "");
+              this.state.campos_do_formulario.set("ordenacao", "");
+              this.state.campos_do_formulario.delete("pagina");
+              
+              this.tipo_de_mensagem = "mensagem_de_sucesso";
+              this.mensagem = resposta.mensagem_de_sucesso;
+              
+              if(resposta.paginacao.indexOf("pagina=0") === -1){
+                this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
+              }else{
+                this.html_da_paginacao_da_lista_de_pessoas = null;
+              }
+              this.html_da_lista_de_pessoas = resposta.lista;
             }
-          );
+            
+            this.status_da_busca = "";
+            
+            /* Chamando o método setState para renderizar o componente novamente. */
+            this.setState(
+              {
+                elemento_modelo: this.state.elemento_modelo,
+                campos_do_formulario: this.state.campos_do_formulario
+              }
+            );
+          }
         }
       }
     }.bind(this);
@@ -285,6 +295,9 @@ class ComponentePaginaTudoEmUm extends React.Component{
       this.status_da_busca = this.state.campos_do_formulario.get("status_da_busca");
     }
     this.state.campos_do_formulario.delete("status_da_busca");
+    
+    this.contador_ajax++;
+    let numero_desta_acao_ajax = this.contador_ajax;
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
@@ -315,24 +328,26 @@ class ComponentePaginaTudoEmUm extends React.Component{
         if(conexao_ajax.status == 200){
           resposta = JSON.parse(conexao_ajax.responseText);
           
-          this.status_da_busca = "";
-          this.mensagem = "";
-          this.tipo_de_mensagem = "";
-          
-          if(resposta.paginacao.indexOf("pagina=0") === -1){
-            this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
-          }else{
-            this.html_da_paginacao_da_lista_de_pessoas = null;
-          }
-          this.html_da_lista_de_pessoas = resposta.lista;
-          
-          /* Chamando o método setState para renderizar o componente novamente. */
-          this.setState(
-            {
-              elemento_modelo: this.state.elemento_modelo,
-              campos_do_formulario: this.state.campos_do_formulario
+          if(numero_desta_acao_ajax >= this.contador_ajax){
+            this.status_da_busca = "";
+            this.mensagem = "";
+            this.tipo_de_mensagem = "";
+            
+            if(resposta.paginacao.indexOf("pagina=0") === -1){
+              this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
+            }else{
+              this.html_da_paginacao_da_lista_de_pessoas = null;
             }
-          );
+            this.html_da_lista_de_pessoas = resposta.lista;
+            
+            /* Chamando o método setState para renderizar o componente novamente. */
+            this.setState(
+              {
+                elemento_modelo: this.state.elemento_modelo,
+                campos_do_formulario: this.state.campos_do_formulario
+              }
+            );
+          }
         }
       }
     }.bind(this);
@@ -346,6 +361,10 @@ class ComponentePaginaTudoEmUm extends React.Component{
     
     this.mensagem = "Editando...";
     this.tipo_de_mensagem = "";
+    this.momento_da_acao_ajax = new Date().getTime();
+    
+    this.contador_ajax++;
+    let numero_desta_acao_ajax = this.contador_ajax;
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
@@ -375,44 +394,46 @@ class ComponentePaginaTudoEmUm extends React.Component{
         if(conexao_ajax.status == 200){
           resposta = JSON.parse(conexao_ajax.responseText);
           
-          this.state.campos_do_formulario.delete("nome");
-          this.state.campos_do_formulario.delete("sobrenome");
-          this.state.campos_do_formulario.delete("cpf");
-          this.state.campos_do_formulario.delete("data_de_nascimento");
-          this.state.campos_do_formulario.delete("sexo");
-          this.state.campos_do_formulario.delete("id_do_setor");
-          this.state.campos_do_formulario.delete("email");
-          this.state.campos_do_formulario.delete("telefone_fixo");
-          this.state.campos_do_formulario.delete("telefone_movel");
-          this.state.campos_do_formulario.delete("telefone_estrangeiro");
-          this.state.campos_do_formulario.delete("_token");
-          this.state.campos_do_formulario.delete("id_da_pessoa");
-          
-          if(typeof resposta.mensagem_de_falha != "undefined"){
-            this.tipo_de_mensagem = "mensagem_de_falha";
-            this.mensagem = resposta.mensagem_de_falha;
-          }
-          if(typeof resposta.mensagem_de_sucesso != "undefined"){
-            this.tipo_de_mensagem = "mensagem_de_sucesso";
-            this.mensagem = resposta.mensagem_de_sucesso;
+          if(numero_desta_acao_ajax >= this.contador_ajax){
+            this.state.campos_do_formulario.delete("nome");
+            this.state.campos_do_formulario.delete("sobrenome");
+            this.state.campos_do_formulario.delete("cpf");
+            this.state.campos_do_formulario.delete("data_de_nascimento");
+            this.state.campos_do_formulario.delete("sexo");
+            this.state.campos_do_formulario.delete("id_do_setor");
+            this.state.campos_do_formulario.delete("email");
+            this.state.campos_do_formulario.delete("telefone_fixo");
+            this.state.campos_do_formulario.delete("telefone_movel");
+            this.state.campos_do_formulario.delete("telefone_estrangeiro");
+            this.state.campos_do_formulario.delete("_token");
+            this.state.campos_do_formulario.delete("id_da_pessoa");
             
-            if(resposta.paginacao.indexOf("pagina=0") === -1){
-              this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
-            }else{
-              this.html_da_paginacao_da_lista_de_pessoas = null;
+            if(typeof resposta.mensagem_de_falha != "undefined"){
+              this.tipo_de_mensagem = "mensagem_de_falha";
+              this.mensagem = resposta.mensagem_de_falha;
             }
-            this.html_da_lista_de_pessoas = resposta.lista;
+            if(typeof resposta.mensagem_de_sucesso != "undefined"){
+              this.tipo_de_mensagem = "mensagem_de_sucesso";
+              this.mensagem = resposta.mensagem_de_sucesso;
+              
+              if(resposta.paginacao.indexOf("pagina=0") === -1){
+                this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
+              }else{
+                this.html_da_paginacao_da_lista_de_pessoas = null;
+              }
+              this.html_da_lista_de_pessoas = resposta.lista;
+            }
+            
+            this.status_da_busca = "";
+            
+            /* Chamando o método setState para renderizar o componente novamente. */
+            this.setState(
+              {
+                elemento_modelo: this.state.elemento_modelo,
+                campos_do_formulario: this.state.campos_do_formulario
+              }
+            );
           }
-          
-          this.status_da_busca = "";
-          
-          /* Chamando o método setState para renderizar o componente novamente. */
-          this.setState(
-            {
-              elemento_modelo: this.state.elemento_modelo,
-              campos_do_formulario: this.state.campos_do_formulario
-            }
-          );
         }
       }
     }.bind(this);
@@ -426,6 +447,10 @@ class ComponentePaginaTudoEmUm extends React.Component{
     
     this.mensagem = "Excluindo...";
     this.tipo_de_mensagem = "";
+    this.momento_da_acao_ajax = new Date().getTime();
+    
+    this.contador_ajax++;
+    let numero_desta_acao_ajax = this.contador_ajax;
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
@@ -455,34 +480,36 @@ class ComponentePaginaTudoEmUm extends React.Component{
         if(conexao_ajax.status == 200){
           resposta = JSON.parse(conexao_ajax.responseText);
           
-          this.state.campos_do_formulario.delete("_token");
-          this.state.campos_do_formulario.delete("id_da_pessoa");
-          
-          if(typeof resposta.mensagem_de_falha != "undefined"){
-            this.tipo_de_mensagem = "mensagem_de_falha";
-            this.mensagem = resposta.mensagem_de_falha;
-          }
-          if(typeof resposta.mensagem_de_sucesso != "undefined"){
-            this.tipo_de_mensagem = "mensagem_de_sucesso";
-            this.mensagem = resposta.mensagem_de_sucesso;
+          if(numero_desta_acao_ajax >= this.contador_ajax){
+            this.state.campos_do_formulario.delete("_token");
+            this.state.campos_do_formulario.delete("id_da_pessoa");
             
-            if(resposta.paginacao.indexOf("pagina=0") === -1){
-              this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
-            }else{
-              this.html_da_paginacao_da_lista_de_pessoas = null;
+            if(typeof resposta.mensagem_de_falha != "undefined"){
+              this.tipo_de_mensagem = "mensagem_de_falha";
+              this.mensagem = resposta.mensagem_de_falha;
             }
-            this.html_da_lista_de_pessoas = resposta.lista;
+            if(typeof resposta.mensagem_de_sucesso != "undefined"){
+              this.tipo_de_mensagem = "mensagem_de_sucesso";
+              this.mensagem = resposta.mensagem_de_sucesso;
+              
+              if(resposta.paginacao.indexOf("pagina=0") === -1){
+                this.html_da_paginacao_da_lista_de_pessoas = resposta.paginacao;
+              }else{
+                this.html_da_paginacao_da_lista_de_pessoas = null;
+              }
+              this.html_da_lista_de_pessoas = resposta.lista;
+            }
+            
+            this.status_da_busca = "";
+            
+            /* Chamando o método setState para renderizar o componente novamente. */
+            this.setState(
+              {
+                elemento_modelo: this.state.elemento_modelo,
+                campos_do_formulario: this.state.campos_do_formulario
+              }
+            );
           }
-          
-          this.status_da_busca = "";
-          
-          /* Chamando o método setState para renderizar o componente novamente. */
-          this.setState(
-            {
-              elemento_modelo: this.state.elemento_modelo,
-              campos_do_formulario: this.state.campos_do_formulario
-            }
-          );
         }
       }
     }.bind(this);
@@ -497,6 +524,7 @@ class ComponenteListaDeOpcoesDaPagina extends React.Component{
   mensagem;
   tipo_de_mensagem;
   posicionar_popup_cadastrar_pessoa;
+  momento_da_acao_mostrar_popup;
   
   constructor(props){
     super(props);
@@ -506,6 +534,7 @@ class ComponenteListaDeOpcoesDaPagina extends React.Component{
     this.mensagem = this.props.mensagem;
     this.tipo_de_mensagem = this.props.tipo_de_mensagem;
     this.posicionar_popup_cadastrar_pessoa = false;
+    this.momento_da_acao_mostrar_popup = 0;
     
     this.state = {
       elemento_modelo: elemento.cloneNode(true),
@@ -558,7 +587,7 @@ class ComponenteListaDeOpcoesDaPagina extends React.Component{
           array_atributos["onClick"] = this.exibir_popup_cadastrar_pessoa;
         break;
         case "div_cadastrar_pessoa":
-          if(this.posicionar_popup_cadastrar_pessoa){
+          if(this.posicionar_popup_cadastrar_pessoa || this.props.momento_da_acao_ajax < this.momento_da_acao_mostrar_popup){
             this.mensagem = "";
             this.tipo_de_mensagem = "";
           }else{
@@ -602,6 +631,8 @@ class ComponenteListaDeOpcoesDaPagina extends React.Component{
     this.state.informacoes_de_estilo.posicao_y = evento.target.getBoundingClientRect().top + window.scrollY;
     
     this.posicionar_popup_cadastrar_pessoa = true;
+    
+    this.momento_da_acao_mostrar_popup = new Date().getTime();
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
@@ -3641,6 +3672,7 @@ class ComponenteListaDePessoas extends React.Component{
   posicionar_popup_visualizar_pessoa;
   posicionar_popup_editar_pessoa;
   posicionar_popup_excluir_pessoa;
+  momento_da_acao_mostrar_popup;
   
   constructor(props){
     super(props);
@@ -3652,6 +3684,7 @@ class ComponenteListaDePessoas extends React.Component{
     this.posicionar_popup_visualizar_pessoa = false;
     this.posicionar_popup_editar_pessoa = false;
     this.posicionar_popup_excluir_pessoa = false;
+    this.momento_da_acao_mostrar_popup = 0;
     
     this.state = {
       elemento_modelo: elemento.cloneNode(true),
@@ -3734,7 +3767,7 @@ class ComponenteListaDePessoas extends React.Component{
           return elemento;
         break;
         case "div_editar_pessoa":
-          if(this.posicionar_popup_editar_pessoa){
+          if(this.posicionar_popup_editar_pessoa || this.props.momento_da_acao_ajax < this.momento_da_acao_mostrar_popup){
             this.mensagem = "";
             this.tipo_de_mensagem = "";
           }else{
@@ -3746,7 +3779,7 @@ class ComponenteListaDePessoas extends React.Component{
           return elemento;
         break;
         case "div_excluir_pessoa":
-          if(this.posicionar_popup_excluir_pessoa){
+          if(this.posicionar_popup_excluir_pessoa || this.props.momento_da_acao_ajax < this.momento_da_acao_mostrar_popup){
             this.mensagem = "";
             this.tipo_de_mensagem = "";
           }else{
@@ -3863,6 +3896,8 @@ class ComponenteListaDePessoas extends React.Component{
     
     this.posicionar_popup_visualizar_pessoa = true;
     
+    this.momento_da_acao_mostrar_popup = new Date().getTime();
+    
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
       {
@@ -3898,6 +3933,8 @@ class ComponenteListaDePessoas extends React.Component{
     
     this.posicionar_popup_editar_pessoa = true;
     
+    this.momento_da_acao_mostrar_popup = new Date().getTime();
+    
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
       {
@@ -3930,6 +3967,8 @@ class ComponenteListaDePessoas extends React.Component{
     this.state.id_da_pessoa_do_popup_excluir = id_da_pessoa;
     
     this.posicionar_popup_excluir_pessoa = true;
+    
+    this.momento_da_acao_mostrar_popup = new Date().getTime();
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
