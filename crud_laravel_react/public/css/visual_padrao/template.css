@@ -41,7 +41,7 @@ body{
     margin-top: 14px;
     overflow: auto;
   }
-  #div_opcoes_do_menu_do_sistema{
+  #div_opcoes_do_menu_do_sistema_template{
     float: left;
     clear: left;
     padding-left: 4px;
