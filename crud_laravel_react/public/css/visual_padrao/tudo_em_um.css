@@ -38,27 +38,27 @@
 }
 #div_filtro_nome{
   float: left;
-  margin-bottom: 10px;
   margin-right: 20px;
+  margin-bottom: 10px;
 }
 @media only screen and (max-device-width: 640px){
   #div_filtro_nome{
     float: none;
-    margin-bottom: 0px;
     margin-right: 0px;
+    margin-bottom: 0px;
   }
 }
 #div_filtro_cpf{
   float: left;
-  margin-bottom: 10px;
   margin-right: 20px;
+  margin-bottom: 10px;
 }
 @media only screen and (max-device-width: 640px){
   #div_filtro_cpf{
     float: none;
     margin-top: 10px;
-    margin-bottom: 0px;
     margin-right: 0px;
+    margin-bottom: 0px;
   }
 }
 #div_filtro_data_de_nascimento{
@@ -528,8 +528,8 @@
 }
 #div_lista_de_sexos>.item_da_lista_de_sexos{
   margin-left: 30px;
-  word-spacing: -2px;
   font-size: 11pt;
+  word-spacing: -2px;
   cursor: pointer;
 }
 #div_lista_de_sexos>.item_da_lista_de_sexos:first-child{
@@ -681,8 +681,8 @@ input.campo_data_de_nascimento{
 }
 .div_lista_de_sexos>.item_da_lista_de_sexos{
   margin-left: 30px;
-  word-spacing: -2px;
   font-size: 11pt;
+  word-spacing: -2px;
   cursor: pointer;
 }
 .div_lista_de_sexos>.item_da_lista_de_sexos:first-child{
@@ -802,8 +802,8 @@ input.campo_telefone_estrangeiro{
 }
 .dia_do_calendario:hover{
   border: 1px solid #404070;
-  padding-left: 2px;
   padding-top: 1px;
+  padding-left: 2px;
   background-color: #FAFAFF;
   cursor: pointer;
 }

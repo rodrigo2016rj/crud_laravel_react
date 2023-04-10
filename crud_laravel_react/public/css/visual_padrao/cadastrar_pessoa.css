@@ -98,8 +98,8 @@
 }
 .item_da_lista_de_sexos{
   margin-left: 30px;
-  word-spacing: -2px;
   font-size: 11pt;
+  word-spacing: -2px;
   cursor: pointer;
 }
 .item_da_lista_de_sexos:first-child{
@@ -213,8 +213,8 @@
 }
 .dia_do_calendario:hover{
   border: 1px solid #404070;
-  padding-left: 2px;
   padding-top: 1px;
+  padding-left: 2px;
   background-color: #FAFAFF;
   cursor: pointer;
 }
