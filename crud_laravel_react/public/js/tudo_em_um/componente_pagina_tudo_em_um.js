@@ -654,6 +654,7 @@ class ComponentePopupCadastrarPessoa extends React.Component{
     
     this.state = {
       elemento_modelo: elemento.cloneNode(true),
+      reposicionar_popup: false,
       anti_csrf: ""
     }
     
@@ -669,24 +670,73 @@ class ComponentePopupCadastrarPessoa extends React.Component{
   }
   
   componentDidMount(){
-    if(typeof window.evento_do_popup_cadastrar_pessoa_ja_foi_adicionado === "undefined"){
-      window.evento_do_popup_cadastrar_pessoa_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+    if(typeof window.eventos_do_popup_cadastrar_pessoa_ja_foi_adicionado === "undefined"){
+      window.eventos_do_popup_cadastrar_pessoa_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+      
+      window.addEventListener("resize", function(evento){
+        let largura_da_div = 0;
+        var estilo_computado = window.getComputedStyle(this.react_referencia_popup_cadastrar_pessoa.current);
+        largura_da_div += parseInt(estilo_computado.borderLeftWidth, 10);
+        largura_da_div += parseInt(estilo_computado.paddingLeft, 10);
+        largura_da_div += parseInt(estilo_computado.width, 10);
+        largura_da_div += parseInt(estilo_computado.paddingRight, 10);
+        largura_da_div += parseInt(estilo_computado.borderRightWidth, 10);
+        
+        const tag_html = document.querySelector("html");
+        let largura_da_tag_html = 0;
+        var estilo_computado = window.getComputedStyle(tag_html);
+        largura_da_tag_html += parseInt(estilo_computado.width, 10);
+        
+        var posicao_x = largura_da_tag_html / 2 - largura_da_div / 2;
+        if(window.innerWidth <= largura_da_div){
+          posicao_x = 0;
+        }
+        
+        let altura_da_div = 0;
+        var estilo_computado = window.getComputedStyle(this.react_referencia_popup_cadastrar_pessoa.current);
+        altura_da_div += parseInt(estilo_computado.borderTopWidth, 10);
+        altura_da_div += parseInt(estilo_computado.paddingTop, 10);
+        altura_da_div += parseInt(estilo_computado.height, 10);
+        altura_da_div += parseInt(estilo_computado.paddingBottom, 10);
+        altura_da_div += parseInt(estilo_computado.borderBottomWidth, 10);
+        
+        var posicao_y = window.scrollY + (window.innerHeight - altura_da_div) / 2;
+        if(window.innerHeight <= altura_da_div){
+          posicao_y = this.props.link_cadastrar_pessoa.posicao_y;
+        }
+        
+        this.react_referencia_popup_cadastrar_pessoa.current.style.left = posicao_x + "px";
+        this.react_referencia_popup_cadastrar_pessoa.current.style.top = posicao_y + "px";
+        
+        /* Chamando o método setState para renderizar o componente novamente. */
+        this.setState(
+          {
+            elemento_modelo: this.state.elemento_modelo,
+            reposicionar_popup: this.state.reposicionar_popup,
+            anti_csrf: this.state.anti_csrf
+          }
+        );
+      }.bind(this));
+      
       window.addEventListener("click", function(evento){
         let tag_alvo = evento.target;
         
         while(true){
           if(tag_alvo === null || !tag_alvo.tagName){
             this.react_referencia_popup_cadastrar_pessoa.current.classList.add("tag_oculta");
+            this.state.reposicionar_popup = false;
             break;
           }
           
           if(tag_alvo.id === "link_cadastrar_pessoa"){
             this.react_referencia_popup_cadastrar_pessoa.current.classList.remove("tag_oculta");
+            this.state.reposicionar_popup = true;
             break;
           }
           
           if(tag_alvo.classList.contains("div_fechar")){
             this.react_referencia_popup_cadastrar_pessoa.current.classList.add("tag_oculta");
+            this.state.reposicionar_popup = false;
             break;
           }
           
@@ -738,7 +788,9 @@ class ComponentePopupCadastrarPessoa extends React.Component{
       this.react_referencia_popup_cadastrar_pessoa.current.style.left = posicao_x + "px";
       this.react_referencia_popup_cadastrar_pessoa.current.style.top = posicao_y + "px";
       
-      this.react_referencia_popup_cadastrar_pessoa.current.classList.add("tag_oculta");
+      if(!this.state.reposicionar_popup){
+        this.react_referencia_popup_cadastrar_pessoa.current.classList.add("tag_oculta");
+      }
     }
   }
   
@@ -3997,7 +4049,8 @@ class ComponentePopupVisualizarPessoa extends React.Component{
     const elemento = props.elemento;
     
     this.state = {
-      elemento_modelo: elemento.cloneNode(true)
+      elemento_modelo: elemento.cloneNode(true),
+      reposicionar_popup: false
     }
     
     this.react_referencia_popup_visualizar_pessoa = React.createRef();
@@ -4009,24 +4062,72 @@ class ComponentePopupVisualizarPessoa extends React.Component{
   }
   
   componentDidMount(){
-    if(typeof window.evento_do_popup_visualizar_pessoa_ja_foi_adicionado === "undefined"){
-      window.evento_do_popup_visualizar_pessoa_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+    if(typeof window.eventos_do_popup_visualizar_pessoa_ja_foi_adicionado === "undefined"){
+      window.eventos_do_popup_visualizar_pessoa_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+      
+      window.addEventListener("resize", function(evento){
+        let largura_da_div = 0;
+        var estilo_computado = window.getComputedStyle(this.react_referencia_popup_visualizar_pessoa.current);
+        largura_da_div += parseInt(estilo_computado.borderLeftWidth, 10);
+        largura_da_div += parseInt(estilo_computado.paddingLeft, 10);
+        largura_da_div += parseInt(estilo_computado.width, 10);
+        largura_da_div += parseInt(estilo_computado.paddingRight, 10);
+        largura_da_div += parseInt(estilo_computado.borderRightWidth, 10);
+        
+        const tag_html = document.querySelector("html");
+        let largura_da_tag_html = 0;
+        var estilo_computado = window.getComputedStyle(tag_html);
+        largura_da_tag_html += parseInt(estilo_computado.width, 10);
+        
+        var posicao_x = largura_da_tag_html / 2 - largura_da_div / 2;
+        if(window.innerWidth <= largura_da_div){
+          posicao_x = 0;
+        }
+        
+        let altura_da_div = 0;
+        var estilo_computado = window.getComputedStyle(this.react_referencia_popup_visualizar_pessoa.current);
+        altura_da_div += parseInt(estilo_computado.borderTopWidth, 10);
+        altura_da_div += parseInt(estilo_computado.paddingTop, 10);
+        altura_da_div += parseInt(estilo_computado.height, 10);
+        altura_da_div += parseInt(estilo_computado.paddingBottom, 10);
+        altura_da_div += parseInt(estilo_computado.borderBottomWidth, 10);
+        
+        var posicao_y = window.scrollY + (window.innerHeight - altura_da_div) / 2;
+        if(window.innerHeight <= altura_da_div){
+          posicao_y = this.props.link_nome_da_pessoa.posicao_y;
+        }
+        
+        this.react_referencia_popup_visualizar_pessoa.current.style.left = posicao_x + "px";
+        this.react_referencia_popup_visualizar_pessoa.current.style.top = posicao_y + "px";
+        
+        /* Chamando o método setState para renderizar o componente novamente. */
+        this.setState(
+          {
+            elemento_modelo: this.state.elemento_modelo,
+            reposicionar_popup: this.state.reposicionar_popup
+          }
+        );
+      }.bind(this));
+      
       window.addEventListener("click", function(evento){
         let tag_alvo = evento.target;
         
         while(true){
           if(tag_alvo === null || !tag_alvo.tagName){
             this.react_referencia_popup_visualizar_pessoa.current.classList.add("tag_oculta");
+            this.state.reposicionar_popup = false;
             break;
           }
           
           if(tag_alvo.classList.contains("nome_da_pessoa")){
             this.react_referencia_popup_visualizar_pessoa.current.classList.remove("tag_oculta");
+            this.state.reposicionar_popup = true;
             break;
           }
           
           if(tag_alvo.classList.contains("div_fechar")){
             this.react_referencia_popup_visualizar_pessoa.current.classList.add("tag_oculta");
+            this.state.reposicionar_popup = false;
             break;
           }
           
@@ -4078,7 +4179,9 @@ class ComponentePopupVisualizarPessoa extends React.Component{
       this.react_referencia_popup_visualizar_pessoa.current.style.left = posicao_x + "px";
       this.react_referencia_popup_visualizar_pessoa.current.style.top = posicao_y + "px";
       
-      this.react_referencia_popup_visualizar_pessoa.current.classList.add("tag_oculta");
+      if(!this.state.reposicionar_popup){
+        this.react_referencia_popup_visualizar_pessoa.current.classList.add("tag_oculta");
+      }
     }
   }
   
@@ -4149,7 +4252,8 @@ class ComponentePopupEditarPessoa extends React.Component{
     const elemento = props.elemento;
     
     this.state = {
-      elemento_modelo: elemento.cloneNode(true)
+      elemento_modelo: elemento.cloneNode(true),
+      reposicionar_popup: false
     }
     
     this.remover_foco_do_botao = this.remover_foco_do_botao.bind(this);
@@ -4164,24 +4268,72 @@ class ComponentePopupEditarPessoa extends React.Component{
   }
   
   componentDidMount(){
-    if(typeof window.evento_do_popup_editar_pessoa_ja_foi_adicionado === "undefined"){
-      window.evento_do_popup_editar_pessoa_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+    if(typeof window.eventos_do_popup_editar_pessoa_ja_foi_adicionado === "undefined"){
+      window.eventos_do_popup_editar_pessoa_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+      
+      window.addEventListener("resize", function(evento){
+        let largura_da_div = 0;
+        var estilo_computado = window.getComputedStyle(this.react_referencia_popup_editar_pessoa.current);
+        largura_da_div += parseInt(estilo_computado.borderLeftWidth, 10);
+        largura_da_div += parseInt(estilo_computado.paddingLeft, 10);
+        largura_da_div += parseInt(estilo_computado.width, 10);
+        largura_da_div += parseInt(estilo_computado.paddingRight, 10);
+        largura_da_div += parseInt(estilo_computado.borderRightWidth, 10);
+        
+        const tag_html = document.querySelector("html");
+        let largura_da_tag_html = 0;
+        var estilo_computado = window.getComputedStyle(tag_html);
+        largura_da_tag_html += parseInt(estilo_computado.width, 10);
+        
+        var posicao_x = largura_da_tag_html / 2 - largura_da_div / 2;
+        if(window.innerWidth <= largura_da_div){
+          posicao_x = 0;
+        }
+        
+        let altura_da_div = 0;
+        var estilo_computado = window.getComputedStyle(this.react_referencia_popup_editar_pessoa.current);
+        altura_da_div += parseInt(estilo_computado.borderTopWidth, 10);
+        altura_da_div += parseInt(estilo_computado.paddingTop, 10);
+        altura_da_div += parseInt(estilo_computado.height, 10);
+        altura_da_div += parseInt(estilo_computado.paddingBottom, 10);
+        altura_da_div += parseInt(estilo_computado.borderBottomWidth, 10);
+        
+        var posicao_y = window.scrollY + (window.innerHeight - altura_da_div) / 2;
+        if(window.innerHeight <= altura_da_div){
+          posicao_y = this.props.link_editar_pessoa.posicao_y;
+        }
+        
+        this.react_referencia_popup_editar_pessoa.current.style.left = posicao_x + "px";
+        this.react_referencia_popup_editar_pessoa.current.style.top = posicao_y + "px";
+        
+        /* Chamando o método setState para renderizar o componente novamente. */
+        this.setState(
+          {
+            elemento_modelo: this.state.elemento_modelo,
+            reposicionar_popup: this.state.reposicionar_popup
+          }
+        );
+      }.bind(this));
+      
       window.addEventListener("click", function(evento){
         let tag_alvo = evento.target;
         
         while(true){
           if(tag_alvo === null || !tag_alvo.tagName){
             this.react_referencia_popup_editar_pessoa.current.classList.add("tag_oculta");
+            this.state.reposicionar_popup = false;
             break;
           }
           
           if(tag_alvo.classList.contains("link_editar_pessoa")){
             this.react_referencia_popup_editar_pessoa.current.classList.remove("tag_oculta");
+            this.state.reposicionar_popup = true;
             break;
           }
           
           if(tag_alvo.classList.contains("div_fechar")){
             this.react_referencia_popup_editar_pessoa.current.classList.add("tag_oculta");
+            this.state.reposicionar_popup = false;
             break;
           }
           
@@ -4233,7 +4385,9 @@ class ComponentePopupEditarPessoa extends React.Component{
       this.react_referencia_popup_editar_pessoa.current.style.left = posicao_x + "px";
       this.react_referencia_popup_editar_pessoa.current.style.top = posicao_y + "px";
       
-      this.react_referencia_popup_editar_pessoa.current.classList.add("tag_oculta");
+      if(!this.state.reposicionar_popup){
+        this.react_referencia_popup_editar_pessoa.current.classList.add("tag_oculta");
+      }
     }
   }
   
@@ -6075,7 +6229,8 @@ class ComponentePopupExcluirPessoa extends React.Component{
     const elemento = props.elemento;
     
     this.state = {
-      elemento_modelo: elemento.cloneNode(true)
+      elemento_modelo: elemento.cloneNode(true),
+      reposicionar_popup: false
     }
     
     this.remover_foco_do_botao = this.remover_foco_do_botao.bind(this);
@@ -6090,24 +6245,72 @@ class ComponentePopupExcluirPessoa extends React.Component{
   }
   
   componentDidMount(){
-    if(typeof window.evento_do_popup_excluir_pessoa_ja_foi_adicionado === "undefined"){
-      window.evento_do_popup_excluir_pessoa_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+    if(typeof window.eventos_do_popup_excluir_pessoa_ja_foi_adicionado === "undefined"){
+      window.eventos_do_popup_excluir_pessoa_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+      
+      window.addEventListener("resize", function(evento){
+        let largura_da_div = 0;
+        var estilo_computado = window.getComputedStyle(this.react_referencia_popup_excluir_pessoa.current);
+        largura_da_div += parseInt(estilo_computado.borderLeftWidth, 10);
+        largura_da_div += parseInt(estilo_computado.paddingLeft, 10);
+        largura_da_div += parseInt(estilo_computado.width, 10);
+        largura_da_div += parseInt(estilo_computado.paddingRight, 10);
+        largura_da_div += parseInt(estilo_computado.borderRightWidth, 10);
+        
+        const tag_html = document.querySelector("html");
+        let largura_da_tag_html = 0;
+        var estilo_computado = window.getComputedStyle(tag_html);
+        largura_da_tag_html += parseInt(estilo_computado.width, 10);
+        
+        var posicao_x = largura_da_tag_html / 2 - largura_da_div / 2;
+        if(window.innerWidth <= largura_da_div){
+          posicao_x = 0;
+        }
+        
+        let altura_da_div = 0;
+        var estilo_computado = window.getComputedStyle(this.react_referencia_popup_excluir_pessoa.current);
+        altura_da_div += parseInt(estilo_computado.borderTopWidth, 10);
+        altura_da_div += parseInt(estilo_computado.paddingTop, 10);
+        altura_da_div += parseInt(estilo_computado.height, 10);
+        altura_da_div += parseInt(estilo_computado.paddingBottom, 10);
+        altura_da_div += parseInt(estilo_computado.borderBottomWidth, 10);
+        
+        var posicao_y = this.props.link_excluir_pessoa.posicao_y - altura_da_div / 2;
+        if(window.innerHeight <= altura_da_div){
+          posicao_y = this.props.link_excluir_pessoa.posicao_y;
+        }
+        
+        this.react_referencia_popup_excluir_pessoa.current.style.left = posicao_x + "px";
+        this.react_referencia_popup_excluir_pessoa.current.style.top = posicao_y + "px";
+        
+        /* Chamando o método setState para renderizar o componente novamente. */
+        this.setState(
+          {
+            elemento_modelo: this.state.elemento_modelo,
+            reposicionar_popup: this.state.reposicionar_popup
+          }
+        );
+      }.bind(this));
+      
       window.addEventListener("click", function(evento){
         let tag_alvo = evento.target;
         
         while(true){
           if(tag_alvo === null || !tag_alvo.tagName){
             this.react_referencia_popup_excluir_pessoa.current.classList.add("tag_oculta");
+            this.state.reposicionar_popup = false;
             break;
           }
           
           if(tag_alvo.classList.contains("link_excluir_pessoa")){
             this.react_referencia_popup_excluir_pessoa.current.classList.remove("tag_oculta");
+            this.state.reposicionar_popup = true;
             break;
           }
           
           if(tag_alvo.classList.contains("div_fechar")){
             this.react_referencia_popup_excluir_pessoa.current.classList.add("tag_oculta");
+            this.state.reposicionar_popup = false;
             break;
           }
           
@@ -6159,7 +6362,9 @@ class ComponentePopupExcluirPessoa extends React.Component{
       this.react_referencia_popup_excluir_pessoa.current.style.left = posicao_x + "px";
       this.react_referencia_popup_excluir_pessoa.current.style.top = posicao_y + "px";
       
-      this.react_referencia_popup_excluir_pessoa.current.classList.add("tag_oculta");
+      if(!this.state.reposicionar_popup){
+        this.react_referencia_popup_excluir_pessoa.current.classList.add("tag_oculta");
+      }
     }
   }
   
@@ -6523,11 +6728,23 @@ class ComponenteCalendario extends React.Component{
       array_atributos["id"] = array_atributos["id"].replace("calendario", this.props.calendario.nome);
       switch(array_atributos["id"]){
         case "div_" + this.props.calendario.nome:
-          if(window.innerWidth <= 640){
-            const largura_do_calendario = 348; //Em pixels.
-            var estilo = {
-              left: window.innerWidth / 2 - largura_do_calendario / 2 + "px"
+          var estilo = null;
+          if(window.innerWidth <= 390){
+            estilo = {
+              marginLeft: "-39px"
             }
+            
+            if(this.props.calendario.nome === "calendario_para_o_campo_filtro_data_de_nascimento"){
+              if(window.innerWidth <= 365){
+                estilo = {
+                  marginLeft: "-15px"
+                }
+              }else{
+                estilo = null;
+              }
+            }
+          }
+          if(estilo !== null){
             array_atributos["style"] = estilo;
           }
           array_atributos["ref"] = this.react_referencia_calendario;

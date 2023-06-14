@@ -5,7 +5,7 @@
   width: calc(820px - 10px - 10px);
   max-width: calc(100% - 10px - 10px);
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   #div_pagina_editar_pessoa{
     padding: 15px 10px 10px 10px;
   }
@@ -23,7 +23,7 @@
   max-width: 100%;
   text-align: justify;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   #div_mensagem{
     margin-top: 20px;
   }
@@ -43,7 +43,7 @@
   width: 400px;
   max-width: 100%;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   #form_editar{
     margin-top: 20px;
   }

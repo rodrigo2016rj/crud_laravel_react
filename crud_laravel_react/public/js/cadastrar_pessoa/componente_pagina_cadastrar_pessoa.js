@@ -922,10 +922,9 @@ class ComponenteCalendario extends React.Component{
       array_atributos["id"] = array_atributos["id"].replace("calendario", this.props.calendario.nome);
       switch(array_atributos["id"]){
         case "div_" + this.props.calendario.nome:
-          if(window.innerWidth <= 640){
-            const largura_do_calendario = 348; //Em pixels.
+          if(window.innerWidth <= 365){
             var estilo = {
-              left: window.innerWidth / 2 - largura_do_calendario / 2 + "px"
+              marginLeft: "-15px"
             }
             array_atributos["style"] = estilo;
           }
@@ -1178,6 +1177,7 @@ class ComponenteCadastrarSetor extends React.Component{
         largura: 0,
         altura: 0
       },
+      reposicionar_descricao: false,
       o_componente_ja_foi_montado: false
     }
     
@@ -1192,6 +1192,32 @@ class ComponenteCadastrarSetor extends React.Component{
   }
   
   componentDidMount(){
+    if(typeof window.evento_do_cadastrar_setor_ja_foi_adicionado === "undefined"){
+      window.evento_do_cadastrar_setor_ja_foi_adicionado = true; //Necessário caso esteja usando React.StrictMode
+      
+      window.addEventListener("resize", function(evento){
+        this.state.informacoes_de_estilo.posicao_x = this.react_referencia_caixa_de_selecao.current.getBoundingClientRect().left + window.scrollX;
+        this.state.informacoes_de_estilo.posicao_y = this.react_referencia_caixa_de_selecao.current.getBoundingClientRect().top + window.scrollY;
+        
+        if(this.state.valor !== ""){
+          this.state.reposicionar_descricao = true;
+        }else{
+          this.state.reposicionar_descricao = false;
+        }
+        
+        /* Chamando o método setState para renderizar o componente novamente. */
+        this.setState(
+          {
+            elemento_modelo: this.state.elemento_modelo,
+            valor: this.state.valor,
+            informacoes_de_estilo: this.state.informacoes_de_estilo,
+            reposicionar_descricao: this.state.reposicionar_descricao,
+            o_componente_ja_foi_montado: this.state.o_componente_ja_foi_montado
+          }
+        );
+      }.bind(this));
+    }
+    
     this.state.informacoes_de_estilo.posicao_x = this.react_referencia_caixa_de_selecao.current.getBoundingClientRect().left + window.scrollX;
     
     this.state.informacoes_de_estilo.posicao_y = this.react_referencia_caixa_de_selecao.current.getBoundingClientRect().top + window.scrollY;
@@ -1250,7 +1276,7 @@ class ComponenteCadastrarSetor extends React.Component{
           array_atributos["onChange"] = this.atualizar_este_componente;
         break;
         case "div_descricoes_para_a_caixa_de_selecao_setor":
-          elemento = React.createElement(ComponenteDescricoesDosSetores, {key: "ComponenteDescricoesDosSetores da caixa de selecao setor", id_do_setor: this.state.valor, caixa_de_selecao: this.state.informacoes_de_estilo}, null);
+          elemento = React.createElement(ComponenteDescricoesDosSetores, {key: "ComponenteDescricoesDosSetores da caixa de selecao setor", id_do_setor: this.state.valor, caixa_de_selecao: this.state.informacoes_de_estilo, reposicionar: this.state.reposicionar_descricao}, null);
           return elemento;
         break;
       }
@@ -1285,6 +1311,7 @@ class ComponenteCadastrarSetor extends React.Component{
   
   atualizar_este_componente(evento){
     this.state.valor = evento.target.value;
+    this.state.reposicionar_descricao = false;
     
     /* Chamando o método setState para renderizar o componente novamente. */
     this.setState(
@@ -1292,6 +1319,7 @@ class ComponenteCadastrarSetor extends React.Component{
         elemento_modelo: this.state.elemento_modelo,
         valor: this.state.valor,
         informacoes_de_estilo: this.state.informacoes_de_estilo,
+        reposicionar_descricao: this.state.reposicionar_descricao,
         o_componente_ja_foi_montado: this.state.o_componente_ja_foi_montado
       }
     );
@@ -1308,6 +1336,8 @@ class ComponenteDescricoesDosSetores extends React.Component{
     const elemento = document.getElementById("div_descricoes_dos_setores");
     
     this.id_anterior = this.props.id_do_setor;
+    
+    this.reposicionar = this.props.reposicionar;
     
     this.state = {
       elemento_modelo: elemento.cloneNode(true)
@@ -1330,6 +1360,7 @@ class ComponenteDescricoesDosSetores extends React.Component{
         while(true){
           if(tag_alvo === null || !tag_alvo.tagName){
             this.react_referencia_popup.current.classList.add("tag_oculta");
+            this.reposicionar = false;
             break;
           }
           
@@ -1340,8 +1371,10 @@ class ComponenteDescricoesDosSetores extends React.Component{
               if(this.id_anterior !== tag_alvo.value){
                 if(this.props.id_do_setor !== ""){
                   this.react_referencia_popup.current.classList.remove("tag_oculta");
+                  this.reposicionar = true;
                 }else{
                   this.react_referencia_popup.current.classList.add("tag_oculta");
+                  this.reposicionar = false;
                 }
                 this.id_anterior = tag_alvo.value;
               }
@@ -1353,8 +1386,10 @@ class ComponenteDescricoesDosSetores extends React.Component{
             if(this.id_anterior !== tag_alvo.getAttribute("value")){
               if(this.props.id_do_setor !== ""){
                 this.react_referencia_popup.current.classList.remove("tag_oculta");
+                this.reposicionar = true;
               }else{
                 this.react_referencia_popup.current.classList.add("tag_oculta");
+                this.reposicionar = false;
               }
               this.id_anterior = tag_alvo.getAttribute("value");
             }
@@ -1394,7 +1429,9 @@ class ComponenteDescricoesDosSetores extends React.Component{
     this.react_referencia_popup.current.style.left = posicao_x + "px";
     this.react_referencia_popup.current.style.top = posicao_y + "px";
     
-    this.react_referencia_popup.current.classList.add("tag_oculta");
+    if(!this.reposicionar || this.props.id_do_setor === ""){
+      this.react_referencia_popup.current.classList.add("tag_oculta");
+    }
   }
   
   html_para_react(elemento){

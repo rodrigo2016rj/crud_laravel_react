@@ -926,10 +926,9 @@ class ComponenteCalendario extends React.Component{
       array_atributos["id"] = array_atributos["id"].replace("calendario", this.props.calendario.nome);
       switch(array_atributos["id"]){
         case "div_" + this.props.calendario.nome:
-          if(window.innerWidth <= 640){
-            const largura_do_calendario = 348; //Em pixels.
+          if(window.innerWidth <= 365){
             var estilo = {
-              left: window.innerWidth / 2 - largura_do_calendario / 2 + "px"
+              marginLeft: "-15px"
             }
             array_atributos["style"] = estilo;
           }

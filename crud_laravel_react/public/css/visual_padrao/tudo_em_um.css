@@ -5,7 +5,7 @@
   width: calc(1020px - 10px - 10px);
   max-width: calc(100% - 10px - 10px);
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   #div_pagina_tudo_em_um{
     padding: 15px 10px 10px 10px;
   }
@@ -33,43 +33,25 @@
   overflow: hidden;
 }
 #h3_titulo_dos_filtros{
-  margin-bottom: 10px;
   font-size: 18pt;
 }
 #div_filtro_nome{
   float: left;
+  margin-top: 10px;
   margin-right: 20px;
-  margin-bottom: 10px;
-}
-@media only screen and (max-device-width: 640px){
-  #div_filtro_nome{
-    float: none;
-    margin-right: 0px;
-    margin-bottom: 0px;
-  }
 }
 #div_filtro_cpf{
   float: left;
+  margin-top: 10px;
   margin-right: 20px;
-  margin-bottom: 10px;
-}
-@media only screen and (max-device-width: 640px){
-  #div_filtro_cpf{
-    float: none;
-    margin-top: 10px;
-    margin-right: 0px;
-    margin-bottom: 0px;
-  }
 }
 #div_filtro_data_de_nascimento{
   float: left;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 800px){
   #div_filtro_data_de_nascimento{
-    float: none;
-    margin-top: 10px;
-    margin-bottom: 0px;
+    margin-right: 20px;
   }
 }
 #span_icone_de_calendario_do_campo_filtro_data_de_nascimento{
@@ -87,35 +69,28 @@
 #div_filtro_setor{
   float: left;
   clear: left;
+  margin-top: 10px;
   margin-right: 20px;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 800px){
   #div_filtro_setor{
-    float: none;
-    margin-top: 10px;
-    margin-right: 0px;
+    clear: none;
   }
 }
 #div_quantidade_por_pagina{
   float: left;
+  margin-top: 10px;
   margin-right: 20px;
-}
-@media only screen and (max-device-width: 640px){
-  #div_quantidade_por_pagina{
-    float: none;
-    margin-top: 10px;
-    margin-right: 0px;
-  }
 }
 #div_botoes_dos_filtros{
   float: left;
-  padding-top: 19px;
+  padding-top: 29px;
   word-spacing: -5px;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 500px){
   #div_botoes_dos_filtros{
-    float: none;
-    margin-top: 10px;
+    clear: left;
+    margin-top: 12px;
     padding-top: 0px;
   }
 }
@@ -149,7 +124,7 @@
 #div_paginacao_de_cima_da_lista_de_pessoas{
   text-align: center;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   #div_paginacao_de_cima_da_lista_de_pessoas{
     position: relative;
     padding-bottom: 10px;
@@ -247,7 +222,7 @@
   max-width: calc(40% - 60px);
   cursor: pointer;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   #div_parte_nome_da_lista_de_pessoas{
     float: none;
     min-width: 100%;
@@ -261,7 +236,7 @@
   max-width: 15%;
   cursor: pointer;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   #div_parte_cpf_da_lista_de_pessoas{
     display: none;
   }
@@ -273,7 +248,7 @@
   max-width: 15%;
   cursor: pointer;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   #div_parte_setor_da_lista_de_pessoas{
     display: none;
   }
@@ -285,7 +260,7 @@
   max-width: 30%;
   cursor: pointer;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   #div_parte_contato_da_lista_de_pessoas{
     display: none;
   }
@@ -297,7 +272,7 @@
   max-width: 60px;
   text-align: right;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   #div_parte_opcoes_da_lista_de_pessoas{
     display: none;
   }
@@ -311,7 +286,7 @@
   min-width: calc(100% - 2px - 16px);
   max-width: calc(100% - 2px - 16px);
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   .pessoa{
     display: block;
   }
@@ -330,7 +305,7 @@
   max-width: calc(40% - 8px - 60px);
   overflow: auto;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   .local_do_nome_da_pessoa{
     margin-right: 0px;
     min-width: initial;
@@ -345,7 +320,7 @@
   max-width: calc(15% - 8px);
   overflow: auto;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   .local_do_cpf_da_pessoa{
     margin-top: 20px;
     margin-right: 0px;
@@ -361,7 +336,7 @@
   max-width: calc(15% - 8px);
   overflow: auto;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   .local_do_nome_do_setor{
     margin-top: 20px;
     margin-right: 0px;
@@ -377,9 +352,10 @@
   max-width: calc(30% - 8px);
   overflow: auto;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   .local_do_contato_da_pessoa{
     margin-top: 20px;
+    margin-right: 0px;
     min-width: initial;
     max-width: initial;
   }
@@ -397,7 +373,7 @@
   max-width: 60px;
   text-align: right;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 1000px){
   .local_das_opcoes_do_item_da_lista{
     margin-top: 20px;
     min-width: initial;
@@ -421,7 +397,7 @@
 #div_paginacao_de_baixo_da_lista_de_pessoas{
   text-align: center;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   #div_paginacao_de_baixo_da_lista_de_pessoas{
     position: relative;
     padding-bottom: 10px;
@@ -746,7 +722,7 @@ input.campo_telefone_estrangeiro{
   font-size: 14pt;
   text-align: justify;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   .div_texto_confirmar_exclusao_de_pessoa{
     font-size: 12pt;
   }

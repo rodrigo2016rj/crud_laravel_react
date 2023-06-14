@@ -6,7 +6,7 @@ body{
   font-family: Verdana, Tahoma, Times New Roman, serif;
   font-size: 12pt;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   body{
     padding: 6px;
   }
@@ -36,17 +36,17 @@ body{
   margin-top: 6px;
   text-align: center;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   #nav_menu_do_sistema_template{
     margin-top: 14px;
-    overflow: auto;
-  }
-  #div_opcoes_do_menu_do_sistema_template{
-    float: left;
-    clear: left;
+    padding-right: 4px;
     padding-left: 4px;
-    min-width: 404px;
   }
+}
+#div_opcoes_do_menu_do_sistema_template{
+  font-size: 0pt;
+  white-space: nowrap;
+  overflow: auto;
 }
 .opcao_do_menu_do_sistema,
 .opcao_do_menu_do_sistema:visited{
@@ -54,13 +54,12 @@ body{
   padding: 16px;
   vertical-align: top;
   color: #000080;
+  font-size: 12pt;
   text-shadow: 1px 0px 0px #808080;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   .opcao_do_menu_do_sistema,
   .opcao_do_menu_do_sistema:visited{
-    display: block;
-    float: left;
     border-top: 1px solid #484870;
     border-right: 1px solid #484870;
     border-bottom: 1px solid #484870;
@@ -76,7 +75,7 @@ body{
   text-decoration: none;
   text-shadow: 1px 0px 0px #FFF;
 }
-@media only screen and (max-device-width: 640px){
+@media(max-width: 640px){
   .opcao_do_menu_do_sistema:hover{
     border-radius: 0px;
   }
@@ -107,14 +106,27 @@ body{
 }
 #div_autor_do_sistema_template{
   padding-top: 25px;
-  padding-right: 30px;
-  padding-left: 30px;
   text-align: center;
 }
+@media(max-width: 450px){
+  #div_autor_do_sistema_template{
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 220px;
+    max-width: 220px;
+  }
+}
 #div_tecnologias_do_sistema_template{
-  padding-right: 30px;
-  padding-left: 30px;
   text-align: center;
+}
+@media(max-width: 450px){
+  #div_tecnologias_do_sistema_template{
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+    min-width: 175px;
+    max-width: 175px;
+  }
 }
 
 /* Classes para qualquer tag */
