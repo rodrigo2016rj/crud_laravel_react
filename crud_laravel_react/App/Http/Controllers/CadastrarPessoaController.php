@@ -357,6 +357,14 @@ final class CadastrarPessoaController extends TemplateController{
       $this->carregar_pagina(true);
       die;
     }
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      $mensagem = 'A pessoa não foi cadastrada.';
+      $mensagem .= ' O campo e-mail da pessoa precisa ser preenchido corretamente.';
+      $sessao->put('mensagem_da_pagina_cadastrar_pessoa', $mensagem);
+      $sessao->save();
+      $this->carregar_pagina(true);
+      die;
+    }
     $pessoa->set_email($email);
 
     $padrao = $pessoa->padrao_para_telefone_fixo();

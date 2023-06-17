@@ -512,6 +512,13 @@ final class TudoEmUmController extends TemplateController{
       echo(json_encode($retorno));
       die;
     }
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      $mensagem = 'A pessoa não foi cadastrada.';
+      $mensagem .= ' O campo e-mail da pessoa precisa ser preenchido corretamente.';
+      $retorno['mensagem_de_falha'] = $mensagem;
+      echo(json_encode($retorno));
+      die;
+    }
     $pessoa->set_email($email);
 
     $padrao = $pessoa->padrao_para_telefone_fixo();
@@ -817,6 +824,13 @@ final class TudoEmUmController extends TemplateController{
     if($quantidade > $maximo){
       $mensagem = 'A pessoa não foi editada.';
       $mensagem .= " O campo e-mail da pessoa não pode ultrapassar $maximo caracteres.";
+      $retorno['mensagem_de_falha'] = $mensagem;
+      echo(json_encode($retorno));
+      die;
+    }
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      $mensagem = 'A pessoa não foi editada.';
+      $mensagem .= ' O campo e-mail da pessoa precisa ser preenchido corretamente.';
       $retorno['mensagem_de_falha'] = $mensagem;
       echo(json_encode($retorno));
       die;

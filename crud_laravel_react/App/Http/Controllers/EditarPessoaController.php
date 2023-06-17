@@ -434,6 +434,14 @@ final class EditarPessoaController extends TemplateController{
       $this->carregar_pagina($id_da_pessoa);
       die;
     }
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+      $mensagem = 'A pessoa não foi editada.';
+      $mensagem .= ' O campo e-mail da pessoa precisa ser preenchido corretamente.';
+      $sessao->put('mensagem_da_pagina_editar_pessoa', $mensagem);
+      $sessao->save();
+      $this->carregar_pagina($id_da_pessoa);
+      die;
+    }
     $pessoa->set_email($email);
 
     $padrao = $pessoa->padrao_para_telefone_fixo();
