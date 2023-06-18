@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use App\Models\Entidades\Pessoa;
 use App\Models\Entidades\Setor;
+use \Exception;
 
 final class TudoEmUmModel{
 
@@ -245,7 +246,7 @@ final class TudoEmUmModel{
     }catch(Exception $excecao){
       $codigo_da_excecao = $excecao->getCode();
       switch($codigo_da_excecao){
-        case 1062:
+        case 23000:
           $mensagem = 'Já existe uma pessoa cadastrada com uma ou mais destas informações.';
           $array_resultado['mensagem_do_model'] = $mensagem;
           break;
@@ -384,7 +385,7 @@ final class TudoEmUmModel{
     }catch(Exception $excecao){
       $codigo_da_excecao = $excecao->getCode();
       switch($codigo_da_excecao){
-        case 1062:
+        case 23000:
           $mensagem = 'Já existe uma pessoa cadastrada com uma ou mais destas informações.';
           $array_resultado['mensagem_do_model'] = $mensagem;
           break;
