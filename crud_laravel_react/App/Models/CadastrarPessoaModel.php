@@ -116,9 +116,9 @@ final class CadastrarPessoaModel{
     try{
       DB::table('pessoa')->insert($insert);
     }catch(Exception $excecao){
-      $codigo_da_excecao = $excecao->getCode();
+      $codigo_da_excecao = $excecao->errorInfo[1];
       switch($codigo_da_excecao){
-        case 23000:
+        case 1062:
           $mensagem = 'Já existe uma pessoa cadastrada com uma ou mais destas informações.';
           $array_resultado['mensagem_do_model'] = $mensagem;
           break;
