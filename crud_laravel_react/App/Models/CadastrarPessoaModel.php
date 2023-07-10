@@ -115,6 +115,7 @@ final class CadastrarPessoaModel{
 
     try{
       DB::table('pessoa')->insert($insert);
+      $array_resultado['id_da_pessoa'] = DB::getPdo()->lastInsertId();
     }catch(Exception $excecao){
       $codigo_da_excecao = $excecao->errorInfo[1];
       switch($codigo_da_excecao){

@@ -17,6 +17,9 @@ final class Pessoa{
   private $setor;
 
   public function __construct($array_pessoa = array()){
+    if($array_pessoa === 'array_de_testes'){
+      $array_pessoa = $this->array_de_testes();
+    }
     if(isset($array_pessoa['pk_pessoa'])){
       $this->pk_pessoa = $array_pessoa['pk_pessoa'];
     }
@@ -151,6 +154,21 @@ final class Pessoa{
     return $this->setor;
   }
 
+  public function array_de_testes(){
+    $array_de_testes['pk_pessoa'] = 999999999;
+    $array_de_testes['fk_setor'] = 1;
+    $array_de_testes['nome'] = 'Teste';
+    $array_de_testes['sobrenome'] = 'Diniz da Silva Fictício';
+    $array_de_testes['cpf'] = '999.999.999-99';
+    $array_de_testes['data_de_nascimento'] = '1991-09-03';
+    $array_de_testes['sexo'] = 'masculino';
+    $array_de_testes['email'] = 'teste@emailfalso.rds';
+    $array_de_testes['telefone_fixo'] = '(61)9999-9999';
+    $array_de_testes['telefone_movel'] = '(61)99999-9999';
+    $array_de_testes['telefone_estrangeiro'] = '+55(61)99999-9999';
+    return $array_de_testes;
+  }
+
   public function enum_sexo(){
     $array_enum['masculino'] = 'Masculino';
     $array_enum['feminino'] = 'Feminino';
@@ -175,7 +193,7 @@ final class Pessoa{
     return -1;
   }
 
-  /* O método abaixo deve ser sempre igual ou mais restritivo que o banco de dados */
+  // O método abaixo deve ser sempre igual ou mais restritivo que o banco de dados
   public function quantidade_maxima_de_caracteres($atributo){
     switch($atributo){
       case 'nome':

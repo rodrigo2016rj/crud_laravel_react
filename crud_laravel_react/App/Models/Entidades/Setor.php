@@ -8,6 +8,9 @@ final class Setor{
   private $descricao;
 
   public function __construct($array_setor = array()){
+    if($array_setor === 'array_de_testes'){
+      $array_setor = $this->array_de_testes();
+    }
     if(isset($array_setor['pk_setor'])){
       $this->pk_setor = $array_setor['pk_setor'];
     }
@@ -43,6 +46,13 @@ final class Setor{
     return $this->descricao;
   }
 
+  public function array_de_testes(){
+    $array_de_testes['pk_setor'] = 999999999;
+    $array_de_testes['nome'] = 'Teste';
+    $array_de_testes['descricao'] = 'Setor criado para testar o sistema.';
+    return $array_de_testes;
+  }
+
   public function quantidade_minima_de_caracteres($atributo){
     switch($atributo){
       case 'nome':
@@ -53,7 +63,7 @@ final class Setor{
     return -1;
   }
 
-  /* O método abaixo deve ser sempre igual ou mais restritivo que o banco de dados */
+  // O método abaixo deve ser sempre igual ou mais restritivo que o banco de dados
   public function quantidade_maxima_de_caracteres($atributo){
     switch($atributo){
       case 'nome':
