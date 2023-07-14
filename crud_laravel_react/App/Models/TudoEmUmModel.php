@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use App\Models\Entidades\Pessoa;
 use App\Models\Entidades\Setor;
-use \Exception;
+use Exception;
 
 final class TudoEmUmModel{
 
