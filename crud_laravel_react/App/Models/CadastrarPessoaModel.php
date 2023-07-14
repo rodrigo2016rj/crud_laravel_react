@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Entidades\Setor;
-use Exception;
+use PDOException;
 
 final class CadastrarPessoaModel{
 
@@ -116,7 +116,7 @@ final class CadastrarPessoaModel{
     try{
       DB::table('pessoa')->insert($insert);
       $array_resultado['id_da_pessoa'] = DB::getPdo()->lastInsertId();
-    }catch(Exception $excecao){
+    }catch(PDOException $excecao){
       $codigo_da_excecao = $excecao->errorInfo[1];
       switch($codigo_da_excecao){
         case 1062:

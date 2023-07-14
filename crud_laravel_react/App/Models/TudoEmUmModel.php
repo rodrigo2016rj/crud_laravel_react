@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use App\Models\Entidades\Pessoa;
 use App\Models\Entidades\Setor;
-use Exception;
+use PDOException;
 
 final class TudoEmUmModel{
 
@@ -244,7 +244,7 @@ final class TudoEmUmModel{
     try{
       DB::table('pessoa')->insert($insert);
       $array_resultado['id_da_pessoa'] = DB::getPdo()->lastInsertId();
-    }catch(Exception $excecao){
+    }catch(PDOException $excecao){
       $codigo_da_excecao = $excecao->errorInfo[1];
       switch($codigo_da_excecao){
         case 1062:
@@ -383,7 +383,7 @@ final class TudoEmUmModel{
 
     try{
       DB::table('pessoa')->where('pk_pessoa', '=', $pessoa->get_pk_pessoa())->update($update);
-    }catch(Exception $excecao){
+    }catch(PDOException $excecao){
       $codigo_da_excecao = $excecao->errorInfo[1];
       switch($codigo_da_excecao){
         case 1062:

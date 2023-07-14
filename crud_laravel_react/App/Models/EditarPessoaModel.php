@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Support\Facades\DB;
 use App\Models\Entidades\Setor;
 use App\Models\Entidades\Pessoa;
-use Exception;
+use PDOException;
 
 final class EditarPessoaModel{
 
@@ -168,7 +168,7 @@ final class EditarPessoaModel{
 
     try{
       DB::table('pessoa')->where('pk_pessoa', '=', $pessoa->get_pk_pessoa())->update($update);
-    }catch(Exception $excecao){
+    }catch(PDOException $excecao){
       $codigo_da_excecao = $excecao->errorInfo[1];
       switch($codigo_da_excecao){
         case 1062:
