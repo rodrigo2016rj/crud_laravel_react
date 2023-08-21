@@ -238,7 +238,7 @@ final class TudoEmUmController extends TemplateController{
     return $valores;
   }
 
-  public function mostrar_pessoas_ajax($mensagem_de_sucesso = ""){
+  public function mostrar_pessoas_ajax($mensagem_de_sucesso = ''){
     $pessoa = new Pessoa();
 
     $metodo = 'get';
@@ -256,7 +256,7 @@ final class TudoEmUmController extends TemplateController{
     $blade = 'tudo_em_um/paginacao_da_lista_de_pessoas';
     $retorno['paginacao'] = view($blade, $valores)->render();
 
-    if($mensagem_de_sucesso !== ""){
+    if($mensagem_de_sucesso !== ''){
       $retorno['mensagem_de_sucesso'] = $mensagem_de_sucesso;
     }
 
