@@ -9,6 +9,7 @@
     <script src="{{asset('js/template/interacoes.js')}}"></script>
     @section('head_especifico')
     @show
+    {{header('Cache-Control: no-store');}}
   </head>
   <body>
     <div id="div_cabecalho_template">
