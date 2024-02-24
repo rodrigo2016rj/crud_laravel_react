@@ -4537,7 +4537,10 @@ class ComponenteEditarNome extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
+    
+    this.react_referencia_campo = React.createRef();
   }
   
   render(){
@@ -4586,12 +4589,16 @@ class ComponenteEditarNome extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_nome":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "campo_nome":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
           }
           this.props.campos_do_formulario.set("nome", this.state.valor);
           array_atributos["value"] = this.state.valor;
+          array_atributos["ref"] = this.react_referencia_campo;
           array_atributos["onChange"] = this.atualizar_este_componente;
         break;
       }
@@ -4619,6 +4626,11 @@ class ComponenteEditarNome extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_campo.current.focus();
   }
   
   atualizar_este_componente(evento){
@@ -4653,7 +4665,10 @@ class ComponenteEditarSobrenome extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
+    
+    this.react_referencia_campo = React.createRef();
   }
   
   render(){
@@ -4702,12 +4717,16 @@ class ComponenteEditarSobrenome extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_sobrenome":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "campo_sobrenome":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
           }
           this.props.campos_do_formulario.set("sobrenome", this.state.valor);
           array_atributos["value"] = this.state.valor;
+          array_atributos["ref"] = this.react_referencia_campo;
           array_atributos["onChange"] = this.atualizar_este_componente;
         break;
       }
@@ -4735,6 +4754,11 @@ class ComponenteEditarSobrenome extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_campo.current.focus();
   }
   
   atualizar_este_componente(evento){
@@ -4769,6 +4793,7 @@ class ComponenteEditarCPF extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.aplicar_mascara = this.aplicar_mascara.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
     
@@ -4826,6 +4851,9 @@ class ComponenteEditarCPF extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_cpf":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "campo_cpf":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
@@ -4860,6 +4888,11 @@ class ComponenteEditarCPF extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_campo.current.focus();
   }
   
   aplicar_mascara(evento){
@@ -4965,6 +4998,7 @@ class ComponenteEditarDataDeNascimento extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.colocar_estilo_hover_na_borda_do_campo = this.colocar_estilo_hover_na_borda_do_campo.bind(this);
     this.colocar_estilo_normal_na_borda_do_campo = this.colocar_estilo_normal_na_borda_do_campo.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
@@ -4974,6 +5008,8 @@ class ComponenteEditarDataDeNascimento extends React.Component{
     this.registrar_escolha_de_mes = this.registrar_escolha_de_mes.bind(this);
     this.registrar_escolha_de_ano = this.registrar_escolha_de_ano.bind(this);
     this.confirmar_escolha = this.confirmar_escolha.bind(this);
+    
+    this.react_referencia_campo = React.createRef();
   }
   
   render(){
@@ -5022,12 +5058,16 @@ class ComponenteEditarDataDeNascimento extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_data_de_nascimento":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "campo_data_de_nascimento":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
           }
           this.props.campos_do_formulario.set("data_de_nascimento", this.state.valor);
           array_atributos["value"] = this.state.valor;
+          array_atributos["ref"] = this.react_referencia_campo;
           array_atributos["onMouseEnter"] = this.colocar_estilo_hover_na_borda_do_campo;
           array_atributos["onMouseLeave"] = this.colocar_estilo_normal_na_borda_do_campo;
           array_atributos["onChange"] = this.atualizar_este_componente;
@@ -5077,6 +5117,11 @@ class ComponenteEditarDataDeNascimento extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_campo.current.focus();
   }
   
   colocar_estilo_hover_na_borda_do_campo(evento){
@@ -5432,7 +5477,10 @@ class ComponenteEditarSetor extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
+    
+    this.react_referencia_caixa_de_selecao = React.createRef();
   }
   
   render(){
@@ -5481,12 +5529,16 @@ class ComponenteEditarSetor extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_setor":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "caixa_de_selecao_setor":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
           }
           this.props.campos_do_formulario.set("id_do_setor", this.state.valor);
           array_atributos["value"] = this.state.valor;
+          array_atributos["ref"] = this.react_referencia_caixa_de_selecao;
           array_atributos["onChange"] = this.atualizar_este_componente;
         break;
       }
@@ -5517,6 +5569,11 @@ class ComponenteEditarSetor extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_caixa_de_selecao.current.focus();
   }
   
   atualizar_este_componente(evento){
@@ -5551,7 +5608,10 @@ class ComponenteEditarEmail extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
+    
+    this.react_referencia_campo = React.createRef();
   }
   
   render(){
@@ -5600,12 +5660,16 @@ class ComponenteEditarEmail extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_email":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "campo_email":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
           }
           this.props.campos_do_formulario.set("email", this.state.valor);
           array_atributos["value"] = this.state.valor;
+          array_atributos["ref"] = this.react_referencia_campo;
           array_atributos["onChange"] = this.atualizar_este_componente;
         break;
       }
@@ -5633,6 +5697,11 @@ class ComponenteEditarEmail extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_campo.current.focus();
   }
   
   atualizar_este_componente(evento){
@@ -5667,6 +5736,7 @@ class ComponenteEditarTelefoneFixo extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.aplicar_mascara = this.aplicar_mascara.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
     
@@ -5724,6 +5794,9 @@ class ComponenteEditarTelefoneFixo extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_telefone_fixo":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "campo_telefone_fixo":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
@@ -5758,6 +5831,11 @@ class ComponenteEditarTelefoneFixo extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_campo.current.focus();
   }
   
   aplicar_mascara(evento){
@@ -5891,6 +5969,7 @@ class ComponenteEditarTelefoneMovel extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.aplicar_mascara = this.aplicar_mascara.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
     
@@ -5948,6 +6027,9 @@ class ComponenteEditarTelefoneMovel extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_telefone_movel":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "campo_telefone_movel":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
@@ -5982,6 +6064,11 @@ class ComponenteEditarTelefoneMovel extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_campo.current.focus();
   }
   
   aplicar_mascara(evento){
@@ -6118,7 +6205,10 @@ class ComponenteEditarTelefoneEstrangeiro extends React.Component{
       valor_editado: false
     }
     
+    this.foco_do_label_pela_classe = this.foco_do_label_pela_classe.bind(this);
     this.atualizar_este_componente = this.atualizar_este_componente.bind(this);
+    
+    this.react_referencia_campo = React.createRef();
   }
   
   render(){
@@ -6167,12 +6257,16 @@ class ComponenteEditarTelefoneEstrangeiro extends React.Component{
             elemento.innerHTML = this.props.elemento.innerHTML;
           }
         break;
+        case "label_telefone_estrangeiro":
+          array_atributos["onClick"] = this.foco_do_label_pela_classe;
+        break;
         case "campo_telefone_estrangeiro":
           if(!this.state.valor_editado && this.props.nova_exibicao){
             this.state.valor = elemento.value;
           }
           this.props.campos_do_formulario.set("telefone_estrangeiro", this.state.valor);
           array_atributos["value"] = this.state.valor;
+          array_atributos["ref"] = this.react_referencia_campo;
           array_atributos["onChange"] = this.atualizar_este_componente;
         break;
       }
@@ -6200,6 +6294,11 @@ class ComponenteEditarTelefoneEstrangeiro extends React.Component{
     }
     
     return elemento_react;
+  }
+  
+  foco_do_label_pela_classe(evento){
+    evento.preventDefault();
+    this.react_referencia_campo.current.focus();
   }
   
   atualizar_este_componente(evento){
