@@ -81,7 +81,7 @@ final class ExcluirPessoaController extends TemplateController{
     /* Validações */
     $sessao->put('tipo_de_mensagem_da_pagina_excluir_pessoa', 'falha');
     if(!is_numeric($id_da_pessoa) or $id_da_pessoa <= 0 or floor($id_da_pessoa) != $id_da_pessoa){
-      $mensagem = 'A pessoa não foi excluida.';
+      $mensagem = 'A pessoa não foi excluída.';
       $mensagem .= ' O ID da pessoa precisa ser um número natural maior que zero.';
       $sessao->put('mensagem_da_pagina_excluir_pessoa', $mensagem);
       $sessao->save();
@@ -90,7 +90,7 @@ final class ExcluirPessoaController extends TemplateController{
     }
     $array_resultado = $excluir_pessoa_model->selecionar_pessoa($id_da_pessoa);
     if(isset($array_resultado['mensagem_do_model'])){
-      $mensagem = 'A pessoa não foi excluida.';
+      $mensagem = 'A pessoa não foi excluída.';
       $mensagem .= " {$array_resultado['mensagem_do_model']}";
       $sessao->put('mensagem_da_pagina_excluir_pessoa', $mensagem);
       $sessao->save();
@@ -100,7 +100,7 @@ final class ExcluirPessoaController extends TemplateController{
 
     /* Excluir pessoa do banco de dados */
     $excluir_pessoa_model->deletar_pessoa($id_da_pessoa);
-    $mensagem = 'A pessoa foi excluida com sucesso.';
+    $mensagem = 'A pessoa foi excluída com sucesso.';
     $sessao->put('tipo_de_mensagem_da_pagina_excluir_pessoa', 'sucesso');
     $sessao->put('mensagem_da_pagina_excluir_pessoa', $mensagem);
     $sessao->save();
